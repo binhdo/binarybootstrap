@@ -8,8 +8,8 @@
  * E.g., it puts together the home page when no home.php file exists.
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package _s
- * @since _s 1.0
+ * @package Binary Bootstrap
+ * @since Binary Bootstrap 1.0
  */
 
 get_header(); ?>
@@ -32,7 +32,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php _s_content_nav( 'nav-below' ); ?>
+			<?php binarybootstrap_content_nav( 'nav-below' ); ?>
 
 		<?php else : ?>
 
