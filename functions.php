@@ -148,7 +148,7 @@ add_action( 'widgets_init', 'binarybootstrap_widgets_init' );
 /**
  * Enqueue scripts and styles
  */
-function binarybootstrap_scripts() {
+function binarybootstrap_scripts_styles() {
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
@@ -163,4 +163,4 @@ function binarybootstrap_scripts() {
 		wp_enqueue_script( 'keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'binarybootstrap_scripts' );
+add_action( 'wp_enqueue_scripts', 'binarybootstrap_scripts_styles' );
