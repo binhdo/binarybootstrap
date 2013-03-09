@@ -6,9 +6,9 @@ module.exports = function(grunt) {
 				pkg : grunt.file.readJSON('package.json'),
 				uglify : {
 					options : {
-						banner : '/**\n* Bootstrap.js v3.0.0 by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n* <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n*/\n'
+						banner : '/**\n* Bootstrap.js v3.0.0 by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n* <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n*/'
 					},
-					build : {
+					dist : {
 						files : {
 							'js/bootstrap.min.js' : [
 									'js/bootstrap-transition.js',
