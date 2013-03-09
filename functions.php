@@ -7,6 +7,41 @@
  */
 
 /**
+ * Custom template tags for this theme.
+ */
+require_once locate_template('/inc/binarybootstrap-template-tags.php');
+
+/**
+ * Custom functions that act independently of the theme templates
+*/
+require_once locate_template('/inc/binarybootstrap-filters.php');
+
+/**
+ * Custom Comment Walker
+*/
+require_once locate_template('/inc/binarybootstrap-walker-comment.php');
+
+/**
+ * Custom Menu Walker
+*/
+require_once locate_template('/inc/binarybootstrap-walker-menu.php');
+
+/**
+ * Customizer additions
+*/
+require_once locate_template('/inc/binarybootstrap-customizer.php');
+
+/**
+ * Implement the Custom Header feature
+*/
+require_once locate_template('/inc/binarybootstrap-custom-header.php');
+
+/*
+ * Load Jetpack compatibility file.
+*/
+require_once locate_template('/inc/jetpack.php');
+
+/**
  * Set the content width based on the theme's design and stylesheet.
  *
  * @since Binary Bootstrap 1.0
@@ -14,12 +49,6 @@
 if ( ! isset( $content_width ) )
 	$content_width = 640; /* pixels */
 
-/*
- * Load Jetpack compatibility file.
- */
-require( get_template_directory() . '/inc/jetpack.php' );
-
-if ( ! function_exists( 'binarybootstrap_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -30,21 +59,6 @@ if ( ! function_exists( 'binarybootstrap_setup' ) ) :
  * @since Binary Bootstrap 1.0
  */
 function binarybootstrap_setup() {
-
-	/**
-	 * Custom template tags for this theme.
-	 */
-	require( get_template_directory() . '/inc/template-tags.php' );
-
-	/**
-	 * Custom functions that act independently of the theme templates
-	 */
-	require( get_template_directory() . '/inc/extras.php' );
-
-	/**
-	 * Customizer additions
-	 */
-	require( get_template_directory() . '/inc/customizer.php' );
 
 	/**
 	 * WordPress.com-specific functions and definitions
@@ -81,7 +95,6 @@ function binarybootstrap_setup() {
 	 */
 	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
 }
-endif; // binarybootstrap_setup
 add_action( 'after_setup_theme', 'binarybootstrap_setup' );
 
 /**
@@ -151,8 +164,3 @@ function binarybootstrap_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'binarybootstrap_scripts' );
-
-/**
- * Implement the Custom Header feature
- */
-//require( get_template_directory() . '/inc/custom-header.php' );
