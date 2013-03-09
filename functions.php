@@ -61,11 +61,6 @@ if ( ! isset( $content_width ) )
 function binarybootstrap_setup() {
 
 	/**
-	 * WordPress.com-specific functions and definitions
-	 */
-	//require( get_template_directory() . '/inc/wpcom.php' );
-
-	/**
 	 * Make theme available for translation
 	 * Translations can be filed in the /languages/ directory
 	 * If you're building a theme based on Binary Bootstrap, use a find and replace
