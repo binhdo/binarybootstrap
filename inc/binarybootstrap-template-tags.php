@@ -8,6 +8,27 @@
  * @since Binary Bootstrap 1.0
  */
 
+/**
+ * #primary .content-area class
+ */
+function binarybootstrap_primary_class() {
+	if ( is_active_sidebar( 'sidebar-1' ) ) {
+		$class = 'span8';
+	} else {
+		$class = 'span12';
+	}
+	
+	return $class;
+}
+
+/**
+ * #secondary .widget-area class
+ */
+function binarybootstrap_secondary_class() {
+	return 'span4';
+
+}
+
 if ( ! function_exists( 'binarybootstrap_content_nav' ) ) :
 /**
  * Display navigation to next/previous pages when applicable

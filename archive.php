@@ -10,7 +10,7 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
+	<section id="primary" class="<?php echo binarybootstrap_primary_class(); ?> content-area">
 		<div id="content" class="site-content" role="main">
 
 		<?php if ( have_posts() ) : ?>
