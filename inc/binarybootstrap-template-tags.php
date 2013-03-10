@@ -29,6 +29,49 @@ function binarybootstrap_secondary_class() {
 
 }
 
+/**
+ * Display a fully fledged responsive Bootstrap Navbar
+ * 
+ * @param string $location
+ * @param string $class
+ * @param string $brand_text
+ * @param string $brand_url
+ * @param boolean $inverse
+ */
+function binarybootstrap_nav_menu( $location, $class, $brand_text = null, $brand_url = null, $inverse = false ) {
+	if ( has_nav_menu( $location ) ) {
+		$args = array(
+			'theme_location' => $location,
+			'container' => false,
+			'depth' => 2,
+			'walker' => new BinaryBootstrap_Walker_Nav_Menu(),
+			'items_wrap' => '<ul id="%1$s" class="nav %2$s">%3$s</ul>'
+		);
+		if ( ! $brand_url )
+			$brand_url = home_url( '/' );
+		
+		if ( $inverse )
+			$class .= " navbar-inverse";
+		 ?>
+		<nav class="<?php echo $class; ?>" role="navigation">
+			<div class="container">
+				<a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<?php if ( $brand_text ) : ?>
+					<a class="navbar-brand" href="<?php echo esc_url( $brand_url ); ?>"><?php echo esc_attr( $brand_text ); ?></a>
+				<?php endif; ?>
+				<div class="nav-collapse collapse navbar-responsive-collapse">
+					<?php wp_nav_menu( $args ); ?>
+				</div>
+			</div>
+		</nav>
+	<?php
+	}
+}
+
 if ( ! function_exists( 'binarybootstrap_content_nav' ) ) :
 /**
  * Display navigation to next/previous pages when applicable

@@ -37,8 +37,8 @@
 			<h1 class="menu-toggle"><?php _e( 'Menu', 'binarybootstrap' ); ?></h1>
 			<div class="assistive-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'binarybootstrap' ); ?>"><?php _e( 'Skip to content', 'binarybootstrap' ); ?></a></div>
 
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 		</nav><!-- #site-navigation -->
+		<?php binarybootstrap_nav_menu( 'primary', 'navbar', 'Home' ); ?>
 	</header><!-- #masthead -->
 
 	<div id="main" class="row site-main">

@@ -6,22 +6,7 @@
  * @since 3.0.0
  * @uses Walker
  */
-class BinaryBootstrap_Walker_Nav_Menu extends Walker {
-	/**
-	 * @see Walker::$tree_type
-	 * @since 3.0.0
-	 * @var string
-	 */
-	var $tree_type = array( 'post_type', 'taxonomy', 'custom' );
-
-	/**
-	 * @see Walker::$db_fields
-	 * @since 3.0.0
-	 * @todo Decouple this.
-	 * @var array
-	*/
-	var $db_fields = array( 'parent' => 'menu_item_parent', 'id' => 'db_id' );
-
+class BinaryBootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 	/**
 	 * @see Walker::start_lvl()
 	 * @since 3.0.0
@@ -31,19 +16,7 @@ class BinaryBootstrap_Walker_Nav_Menu extends Walker {
 	*/
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$indent = str_repeat("\t", $depth);
-		$output .= "\n$indent<ul class=\"sub-menu\">\n";
-	}
-
-	/**
-	 * @see Walker::end_lvl()
-	 * @since 3.0.0
-	 *
-	 * @param string $output Passed by reference. Used to append additional content.
-	 * @param int $depth Depth of page. Used for padding.
-	 */
-	function end_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = str_repeat("\t", $depth);
-		$output .= "$indent</ul>\n";
+		$output .= "\n$indent<ul class=\"dropdown-menu sub-menu\">\n";
 	}
 
 	/**
@@ -59,10 +32,17 @@ class BinaryBootstrap_Walker_Nav_Menu extends Walker {
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
-		$class_names = $value = '';
+		$class_names = $value = $li_attributes =  '';
 
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+		
+		if ( $args->has_children && $depth < 1 ) {
+			$classes[] = 'dropdown';
+			$li_attributes .= 'data-dropdown="dropdown"';
+		}
+		
 		$classes[] = 'menu-item-' . $item->ID;
+		$classes[] = $item->current ? 'active' : '';
 
 		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
 		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
@@ -70,13 +50,19 @@ class BinaryBootstrap_Walker_Nav_Menu extends Walker {
 		$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
 		$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
 
-		$output .= $indent . '<li' . $id . $value . $class_names .'>';
+		$output .= $indent . '<li' . $id . $value . $class_names . $li_attributes . '>';
 
 		$atts = array();
 		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
 		$atts['target'] = ! empty( $item->target )     ? $item->target     : '';
 		$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
 		$atts['href']   = ! empty( $item->url )        ? $item->url        : '';
+		if ( $args->has_children && $depth < 1 ) {
+		$atts['class']	= 'dropdown-toggle';
+		$atts['data-toggle'] = 'dropdown';
+		$atts['data-target'] = '#';
+		}
+		//$attributes .= ($args->has_children && $depth < 1) ? ' class="dropdown-toggle" data-toggle="dropdown" data-target="#"' : '';
 
 		$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args );
 
@@ -91,22 +77,11 @@ class BinaryBootstrap_Walker_Nav_Menu extends Walker {
 		$item_output = $args->before;
 		$item_output .= '<a'. $attributes .'>';
 		$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+		$item_output .= ($args->has_children && $depth < 1) ? ' <b class="caret"></b> ' : '';
 		$item_output .= '</a>';
 		$item_output .= $args->after;
 
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
-	}
-
-	/**
-	 * @see Walker::end_el()
-	 * @since 3.0.0
-	 *
-	 * @param string $output Passed by reference. Used to append additional content.
-	 * @param object $item Page data object. Not used.
-	 * @param int $depth Depth of page. Not Used.
-	 */
-	function end_el( &$output, $item, $depth = 0, $args = array() ) {
-		$output .= "</li>\n";
 	}
 	
 	/**
@@ -139,6 +114,9 @@ class BinaryBootstrap_Walker_Nav_Menu extends Walker {
 		//display this element
 		if ( isset( $args[0] ) && is_array( $args[0] ) )
 			$args[0]['has_children'] = ! empty( $children_elements[$element->$id_field] );
+		elseif ( is_object( $args[0] ) )
+		$args[0]->has_children = (bool) (!empty( $children_elements[$element->$id_field] ) AND $depth != $max_depth - 1);
+		
 		$cb_args = array_merge( array(&$output, $element, $depth), $args);
 		call_user_func_array(array($this, 'start_el'), $cb_args);
 	
