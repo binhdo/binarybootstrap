@@ -32,13 +32,8 @@
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 		</hgroup>
-
-		<nav id="site-navigation" class="navigation-main" role="navigation">
-			<h1 class="menu-toggle"><?php _e( 'Menu', 'binarybootstrap' ); ?></h1>
-			<div class="assistive-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'binarybootstrap' ); ?>"><?php _e( 'Skip to content', 'binarybootstrap' ); ?></a></div>
-
-		</nav><!-- #site-navigation -->
-		<?php binarybootstrap_nav_menu( 'primary', 'navbar', 'Home' ); ?>
+		<div class="assistive-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'binarybootstrap' ); ?>"><?php _e( 'Skip to content', 'binarybootstrap' ); ?></a></div>
+		<?php binarybootstrap_nav_menu( 'primary', 'navbar', __( 'Home', 'binarybootstrap' ) ); ?>
 	</header><!-- #masthead -->
 
 	<div id="main" class="row site-main">
