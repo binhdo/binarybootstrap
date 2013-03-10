@@ -18,7 +18,7 @@ class BinaryBootstrap_Walker_Comment extends Walker_Comment {
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$GLOBALS['comment_depth'] = $depth + 1;
 
-		echo "<ul class='media unstyled comment-" . get_comment_ID() . " children'>\n";
+		echo "<ul class='media list-unstyled comment-" . get_comment_ID() . " children'>\n";
 	}
 
 	/**

@@ -42,7 +42,7 @@
 		</nav><!-- #comment-nav-before -->
 		<?php endif; // check for comment navigation ?>
 
-		<ol class="comment-list">
+		<ol class="media-list comment-list">
 			<?php
 				/* Loop through and list the comments. Tell wp_list_comments()
 				 * to use binarybootstrap_comment() to format the comments.
@@ -50,7 +50,7 @@
 				 * define binarybootstrap_comment() and that will be used instead.
 				 * See binarybootstrap_comment() in inc/template-tags.php for more.
 				 */
-				wp_list_comments( array( 'callback' => 'binarybootstrap_comment' ) );
+				wp_list_comments( array( 'walker' => new BinaryBootstrap_Walker_Comment() ) );
 			?>
 		</ol><!-- .comment-list -->
 

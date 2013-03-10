@@ -77,3 +77,9 @@ function binarybootstrap_wp_title( $title, $sep ) {
 	return $title;
 }
 add_filter( 'wp_title', 'binarybootstrap_wp_title', 10, 2 );
+
+function binarybootstrap_get_avatar( $avatar ) {
+	$avatar = str_replace( "class='avatar", "class='avatar pull-left media-object", $avatar );
+	return $avatar;
+}
+add_filter( 'get_avatar', 'binarybootstrap_get_avatar' );
