@@ -30,15 +30,14 @@ function binarybootstrap_secondary_class() {
 }
 
 /**
- * Display a fully fledged responsive Bootstrap Navbar
+ * Displays a fully fledged responsive Bootstrap Navbar
  * 
  * @param string $location
  * @param string $class
  * @param string $brand_text
  * @param string $brand_url
- * @param boolean $inverse
  */
-function binarybootstrap_nav_menu( $location, $class, $brand_text = null, $brand_url = null, $inverse = false ) {
+function binarybootstrap_nav_menu( $location, $class, $brand_text = null, $brand_url = null ) {
 	if ( has_nav_menu( $location ) ) {
 		$args = array(
 			'theme_location' => $location,
@@ -49,10 +48,7 @@ function binarybootstrap_nav_menu( $location, $class, $brand_text = null, $brand
 		);
 		if ( ! $brand_url )
 			$brand_url = home_url( '/' );
-		
-		if ( $inverse )
-			$class .= " navbar-inverse";
-		 ?>
+		?>
 		<nav class="<?php echo $class; ?>" role="navigation">
 			<div class="container">
 				<a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
