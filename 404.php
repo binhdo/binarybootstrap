@@ -12,7 +12,7 @@ get_header(); ?>
 		<div id="content" class="site-content" role="main">
 
 			<article id="post-0" class="post error404 not-found">
-				<header class="entry-header">
+				<header class="page-header entry-header">
 					<h1 class="entry-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'binarybootstrap' ); ?></h1>
 				</header><!-- .entry-header -->
 
