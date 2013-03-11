@@ -17,7 +17,7 @@ function binarybootstrap_primary_class() {
 	} else {
 		$class = 'span12';
 	}
-	
+
 	return $class;
 }
 
@@ -31,7 +31,7 @@ function binarybootstrap_secondary_class() {
 
 /**
  * Displays a fully fledged responsive Bootstrap Navbar
- * 
+ *
  * @param string $location
  * @param string $class
  * @param string $brand_text
@@ -40,24 +40,21 @@ function binarybootstrap_secondary_class() {
 function binarybootstrap_nav_menu( $location, $class, $brand_text = null, $brand_url = null ) {
 	if ( has_nav_menu( $location ) ) {
 		$args = array(
-			'theme_location' => $location,
-			'container' => false,
-			'depth' => 2,
-			'walker' => new BinaryBootstrap_Walker_Nav_Menu(),
-			'items_wrap' => '<ul id="%1$s" class="nav %2$s">%3$s</ul>'
+				'theme_location' => $location,
+				'container' => false,
+				'depth' => 2,
+				'walker' => new BinaryBootstrap_Walker_Nav_Menu(),
+				'items_wrap' => '<ul id="%1$s" class="nav %2$s">%3$s</ul>'
 		);
 		if ( ! $brand_url )
 			$brand_url = home_url( '/' );
 		?>
 		<nav class="<?php echo $class; ?>" role="navigation">
 			<div class="container">
-				<a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
+				<a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</a>
 				<?php if ( $brand_text ) : ?>
-					<a class="navbar-brand" href="<?php echo esc_url( $brand_url ); ?>"><?php echo esc_attr( $brand_text ); ?></a>
+				<a class="navbar-brand" href="<?php echo esc_url( $brand_url ); ?>"><?php echo esc_attr( $brand_text ); ?> </a>
 				<?php endif; ?>
 				<div class="nav-collapse collapse navbar-responsive-collapse">
 					<?php wp_nav_menu( $args ); ?>
@@ -93,27 +90,34 @@ function binarybootstrap_content_nav( $nav_id ) {
 
 	?>
 	<nav role="navigation" id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo $nav_class; ?>">
-		<h1 class="assistive-text"><?php _e( 'Post navigation', 'binarybootstrap' ); ?></h1>
-
-	<?php if ( is_single() ) : // navigation links for single posts ?>
-
+		<h1 class="assistive-text">
+			<?php _e( 'Post navigation', 'binarybootstrap' ); ?>
+		</h1>
+	
+		<?php if ( is_single() ) : // navigation links for single posts ?>
+	
 		<?php previous_post_link( '<div class="previous">%link</div>', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'binarybootstrap' ) . '</span> %title' ); ?>
 		<?php next_post_link( '<div class="next">%link</div>', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'binarybootstrap' ) . '</span>' ); ?>
-
-	<?php elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) : // navigation links for home, archive, and search pages ?>
-
+	
+		<?php elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) : // navigation links for home, archive, and search pages ?>
+	
 		<?php if ( get_next_posts_link() ) : ?>
-		<div class="previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'binarybootstrap' ) ); ?></div>
+		<div class="previous">
+			<?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'binarybootstrap' ) ); ?>
+		</div>
 		<?php endif; ?>
-
+	
 		<?php if ( get_previous_posts_link() ) : ?>
-		<div class="next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'binarybootstrap' ) ); ?></div>
+		<div class="next">
+			<?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'binarybootstrap' ) ); ?>
+		</div>
 		<?php endif; ?>
-
-	<?php endif; ?>
-
-	</nav><!-- #<?php echo esc_html( $nav_id ); ?> -->
-	<?php
+	
+		<?php endif; ?>
+	
+	</nav>
+	<!-- #<?php echo esc_html( $nav_id ); ?> -->
+<?php
 }
 
 /**
@@ -156,14 +160,14 @@ function binarybootstrap_entry_meta() {
 
 /**
  * Prints HTML with date information for current post.
-*
-* Create your own binarybootstrap_entry_date() to override in a child theme.
-*
-* @since Twenty Thirteen 1.0
-*
-* @param boolean $echo Whether to echo the date. Default true.
-* @return string
-*/
+ *
+ * Create your own binarybootstrap_entry_date() to override in a child theme.
+ *
+ * @since Twenty Thirteen 1.0
+ *
+ * @param boolean $echo Whether to echo the date. Default true.
+ * @return string
+ */
 function binarybootstrap_entry_date( $echo = true ) {
 	$format_prefix = ( has_post_format( 'chat' ) || has_post_format( 'status' ) ) ? _x( '%1$s on %2$s', '1: post format name. 2: date', 'binarybootstrap' ): '%2$s';
 
