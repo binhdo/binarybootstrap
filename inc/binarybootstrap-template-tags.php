@@ -35,10 +35,19 @@ function binarybootstrap_secondary_class() {
 }
 
 /**
+ * #tertiary .widget-area class
+ * 
  * @return string
  */
 function binarybootstrap_footer_widgets_class() {
-	return 'span4';
+	$widgets = wp_get_sidebars_widgets();
+	$num_widgets = count( $widgets['sidebar-2'] );
+	
+	$a = floor(12 / $num_widgets);
+	
+	$class = 'span' . $a;
+	
+	return $class;
 	
 }
 
