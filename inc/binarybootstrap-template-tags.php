@@ -9,13 +9,16 @@
  */
 
 /**
- * #primary .content-area class
+ * #primary .content-area
+ * 
+ * @param string $has_sidebar
+ * @return string
  */
-function binarybootstrap_primary_class() {
-	if ( is_active_sidebar( 'sidebar-1' ) ) {
+function binarybootstrap_primary_class( $has_sidebar = true ) {
+	if ( $has_sidebar && is_active_sidebar( 'sidebar-1' ) ) {
 		$class = 'span8';
 	} else {
-		$class = 'span12';
+		$class = is_attachment() ? 'span10 offset1' : 'span12';
 	}
 
 	return $class;
