@@ -20,19 +20,26 @@ get_header();
 
 					<div class="help-block entry-meta">
 						<?php
-							$metadata = wp_get_attachment_metadata();
-							printf( __( 'Published <span class="entry-date"><time class="entry-date" datetime="%1$s">%2$s</time></span> at <a href="%3$s" title="Link to full-size image">%4$s &times; %5$s</a> in <a href="%6$s" title="Return to %7$s" rel="gallery">%8$s</a>', 'binarybootstrap' ),
+							$published_text  = __( '<i class="glyphicon glyphicon-time"></i> <span class="attachment-meta"><time class="entry-date" datetime="%1$s">%2$s</time> in <a href="%3$s" title="Return to %4$s" rel="gallery">%5$s</a></span> ', 'binarybootstrap' );
+							$post_title = get_the_title( $post->post_parent );
+							if ( empty( $post_title ) || 0 == $post->post_parent )
+								$published_text  = '<span class="attachment-meta"><time class="entry-date" datetime="%1$s">%2$s</time></span> ';
+
+							printf( $published_text,
 								esc_attr( get_the_date( 'c' ) ),
 								esc_html( get_the_date() ),
-								wp_get_attachment_url(),
+								esc_url( get_permalink( $post->post_parent ) ),
+								esc_attr( strip_tags( $post_title ) ),
+								$post_title
+							);
+
+							$metadata = wp_get_attachment_metadata();
+							printf( '<i class="glyphicon glyphicon-picture"></i> <span class="attachment-meta full-size-link"><a href="%1$s" title="Link to full-size image">%2$s &times; %3$s</a></span>',
+								esc_url( wp_get_attachment_url() ),
 								$metadata['width'],
-								$metadata['height'],
-								get_permalink( $post->post_parent ),
-								esc_attr( get_the_title( $post->post_parent ) ),
-								get_the_title( $post->post_parent )
+								$metadata['height']
 							);
 						?>
-						<?php edit_post_link( __( 'Edit', 'binarybootstrap' ), '<span class="sep"> | </span> <span class="edit-link">', '</span>' ); ?>
 					</div><!-- .entry-meta -->
 
 					<nav id="image-navigation" class="navigation-image">
@@ -96,15 +103,6 @@ get_header();
 				</div><!-- .entry-content -->
 
 				<footer class="help-block entry-meta">
-					<?php if ( comments_open() && pings_open() ) : // Comments and trackbacks open ?>
-						<?php printf( __( '<a class="comment-link" href="#respond" title="Post a comment">Post a comment</a> or leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'binarybootstrap' ), get_trackback_url() ); ?>
-					<?php elseif ( ! comments_open() && pings_open() ) : // Only trackbacks open ?>
-						<?php printf( __( 'Comments are closed, but you can leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'binarybootstrap' ), get_trackback_url() ); ?>
-					<?php elseif ( comments_open() && ! pings_open() ) : // Only comments open ?>
-						<?php _e( 'Trackbacks are closed, but you can <a class="comment-link" href="#respond" title="Post a comment">post a comment</a>.', 'binarybootstrap' ); ?>
-					<?php elseif ( ! comments_open() && ! pings_open() ) : // Comments and trackbacks closed ?>
-						<?php _e( 'Both comments and trackbacks are currently closed.', 'binarybootstrap' ); ?>
-					<?php endif; ?>
 					<?php edit_post_link( __( 'Edit', 'binarybootstrap' ), ' <span class="edit-link">', '</span>' ); ?>
 				</footer><!-- .entry-meta -->
 			</article><!-- #post-<?php the_ID(); ?> -->
