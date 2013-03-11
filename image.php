@@ -41,11 +41,6 @@ get_header();
 							);
 						?>
 					</div><!-- .entry-meta -->
-
-					<nav id="image-navigation" class="navigation-image">
-						<span class="previous"><?php previous_image_link( false, __( '&larr; Previous', 'binarybootstrap' ) ); ?></span>
-						<span class="next"><?php next_image_link( false, __( 'Next &rarr;', 'binarybootstrap' ) ); ?></span>
-					</nav><!-- #image-navigation -->
 				</header><!-- .entry-header -->
 
 				<div class="entry-content">
@@ -103,6 +98,11 @@ get_header();
 				</div><!-- .entry-content -->
 
 				<footer class="help-block entry-meta">
+					<ul id="image-navigation" class="pager navigation-image">
+						<li class="previous"><?php previous_image_link( false, __( '&larr; Previous', 'binarybootstrap' ) ); ?></li>
+						<li class="next"><?php next_image_link( false, __( 'Next &rarr;', 'binarybootstrap' ) ); ?></li>
+					</ul><!-- #image-navigation -->
+				
 					<?php edit_post_link( __( 'Edit', 'binarybootstrap' ), ' <span class="edit-link">', '</span>' ); ?>
 				</footer><!-- .entry-meta -->
 			</article><!-- #post-<?php the_ID(); ?> -->
