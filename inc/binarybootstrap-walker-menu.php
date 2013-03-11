@@ -13,7 +13,7 @@ class BinaryBootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 	 *
 	 * @param string $output Passed by reference. Used to append additional content.
 	 * @param int $depth Depth of page. Used for padding.
-	*/
+	 */
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$indent = str_repeat("\t", $depth);
 		$output .= "\n$indent<ul class=\"dropdown-menu sub-menu\">\n";
@@ -35,12 +35,12 @@ class BinaryBootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$class_names = $value = $li_attributes =  '';
 
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
-		
+
 		if ( $args->has_children && $depth < 1 ) {
 			$classes[] = 'dropdown';
 			$li_attributes .= 'data-dropdown="dropdown"';
 		}
-		
+
 		$classes[] = 'menu-item-' . $item->ID;
 		$classes[] = $item->current ? 'active' : '';
 
@@ -58,9 +58,9 @@ class BinaryBootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
 		$atts['href']   = ! empty( $item->url )        ? $item->url        : '';
 		if ( $args->has_children && $depth < 1 ) {
-		$atts['class']	= 'dropdown-toggle';
-		$atts['data-toggle'] = 'dropdown';
-		$atts['data-target'] = '#';
+			$atts['class']	= 'dropdown-toggle';
+			$atts['data-toggle'] = 'dropdown';
+			$atts['data-target'] = '#';
 		}
 		//$attributes .= ($args->has_children && $depth < 1) ? ' class="dropdown-toggle" data-toggle="dropdown" data-target="#"' : '';
 
@@ -77,13 +77,13 @@ class BinaryBootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$item_output = $args->before;
 		$item_output .= '<a'. $attributes .'>';
 		$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-		$item_output .= ($args->has_children && $depth < 1) ? ' <b class="caret"></b> ' : '';
+		$item_output .= ($args->has_children && $depth < 1) ? '<b class="caret"></b>' : '';
 		$item_output .= '</a>';
 		$item_output .= $args->after;
 
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 	}
-	
+
 	/**
 	 * Traverse elements to create list from elements.
 	 *
@@ -105,28 +105,28 @@ class BinaryBootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 	 * @return null Null on failure with no changes to parameters.
 	 */
 	function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output ) {
-	
+
 		if ( !$element )
 			return;
-	
+
 		$id_field = $this->db_fields['id'];
-	
+
 		//display this element
 		if ( isset( $args[0] ) && is_array( $args[0] ) )
 			$args[0]['has_children'] = ! empty( $children_elements[$element->$id_field] );
 		elseif ( is_object( $args[0] ) )
-		$args[0]->has_children = (bool) (!empty( $children_elements[$element->$id_field] ) AND $depth != $max_depth - 1);
-		
+			$args[0]->has_children = (bool) (!empty( $children_elements[$element->$id_field] ) AND $depth != $max_depth - 1);
+
 		$cb_args = array_merge( array(&$output, $element, $depth), $args);
 		call_user_func_array(array($this, 'start_el'), $cb_args);
-	
+
 		$id = $element->$id_field;
-	
+
 		// descend only when the depth is right and there are childrens for this element
 		if ( ($max_depth == 0 || $max_depth > $depth+1 ) && isset( $children_elements[$id]) ) {
-	
+
 			foreach( $children_elements[ $id ] as $child ){
-	
+
 				if ( !isset($newlevel) ) {
 					$newlevel = true;
 					//start the child delimiter
@@ -137,16 +137,16 @@ class BinaryBootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 			}
 			unset( $children_elements[ $id ] );
 		}
-	
+
 		if ( isset($newlevel) && $newlevel ){
 			//end the child delimiter
 			$cb_args = array_merge( array(&$output, $depth), $args);
 			call_user_func_array(array($this, 'end_lvl'), $cb_args);
 		}
-	
+
 		//end this element
 		$cb_args = array_merge( array(&$output, $element, $depth), $args);
 		call_user_func_array(array($this, 'end_el'), $cb_args);
 	}
-	
+
 }
