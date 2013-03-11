@@ -45,7 +45,7 @@ get_header();
 
 				<div class="entry-content">
 
-					<div class="entry-attachment">
+					<div class="text-center entry-attachment">
 						<div class="attachment">
 							<?php
 								/**
