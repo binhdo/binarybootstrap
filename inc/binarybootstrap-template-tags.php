@@ -10,7 +10,7 @@
 
 /**
  * #primary .content-area
- * 
+ *
  * @param string $has_sidebar
  * @return string
  */
@@ -26,7 +26,7 @@ function binarybootstrap_primary_class( $has_sidebar = true ) {
 
 /**
  * #secondary .widget-area class
- * 
+ *
  * @return string
  */
 function binarybootstrap_secondary_class() {
@@ -36,19 +36,19 @@ function binarybootstrap_secondary_class() {
 
 /**
  * #tertiary .widget-area class
- * 
+ *
  * @return string
  */
 function binarybootstrap_footer_widgets_class() {
 	$widgets = wp_get_sidebars_widgets();
 	$num_widgets = count( $widgets['sidebar-2'] );
-	
+
 	$a = floor(12 / $num_widgets);
-	
+
 	$class = 'span' . $a;
-	
+
 	return $class;
-	
+
 }
 
 /**
@@ -71,19 +71,19 @@ function binarybootstrap_nav_menu( $location, $class, $brand_text = null, $brand
 		if ( ! $brand_url )
 			$brand_url = home_url( '/' );
 		?>
-		<nav class="<?php echo $class; ?>" role="navigation">
-			<div class="container">
-				<a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-				</a>
-				<?php if ( $brand_text ) : ?>
-				<a class="navbar-brand" href="<?php echo esc_url( $brand_url ); ?>"><?php echo esc_attr( $brand_text ); ?> </a>
-				<?php endif; ?>
-				<div class="nav-collapse collapse navbar-responsive-collapse">
-					<?php wp_nav_menu( $args ); ?>
-				</div>
-			</div>
-		</nav>
-	<?php
+<nav class="<?php echo $class; ?>" role="navigation">
+	<div class="container">
+		<a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+		</a>
+		<?php if ( $brand_text ) : ?>
+		<a class="navbar-brand" href="<?php echo esc_url( $brand_url ); ?>"><?php echo esc_attr( $brand_text ); ?> </a>
+		<?php endif; ?>
+		<div class="nav-collapse collapse navbar-responsive-collapse">
+			<?php wp_nav_menu( $args ); ?>
+		</div>
+	</div>
+</nav>
+<?php
 	}
 }
 
@@ -92,54 +92,53 @@ function binarybootstrap_nav_menu( $location, $class, $brand_text = null, $brand
  *
  * @since Binary Bootstrap 1.0
  */
-function binarybootstrap_content_nav( $nav_id ) {
-	global $wp_query, $post;
+function binarybootstrap_content_nav() {
+	global $wp_query, $wp_rewrite;
 
-	// Don't print empty markup on single pages if there's nowhere to navigate.
-	if ( is_single() ) {
-		$previous = ( is_attachment() ) ? get_post( $post->post_parent ) : get_adjacent_post( false, '', true );
-		$next = get_adjacent_post( false, '', false );
+	if ( ! is_single() ) {
+		$paged = ( get_query_var( 'paged' )) ? intval( get_query_var( 'paged' ) ) : 1;
 
-		if ( ! $next && ! $previous )
-			return;
+		$pagenum_link = html_entity_decode( get_pagenum_link() );
+		$query_args = array();
+		$url_parts = explode( '?', $pagenum_link );
+
+		if ( isset( $url_parts[1] ) ) {
+			wp_parse_str( $url_parts[1], $query_args );
+		}
+		$pagenum_link = remove_query_arg( array_keys( $query_args ), $pagenum_link );
+		$pagenum_link = trailingslashit( $pagenum_link ) . '%_%';
+
+		$format = ($wp_rewrite->using_index_permalinks() AND !strpos( $pagenum_link, 'index.php' )) ? 'index.php/' : '';
+		$format .= $wp_rewrite->using_permalinks() ? user_trailingslashit( 'page/%#%', 'paged' ) : '?paged=%#%';
+
+		$links = paginate_links( array(
+				'base' => $pagenum_link,
+				'format' => $format,
+				'total' => $wp_query->max_num_pages,
+				'current' => $paged,
+				'mid_size' => 3,
+				'type' => 'array',
+				'prev_text' => __( '&laquo;' ),
+				'next_text' => __( '&raquo;' ),
+				'add_args' => array_map( 'urlencode', $query_args )
+		) );
+
+		if ( $links ) {
+			$page_links = "<ul class='pagination page-numbers'>\n\t<li>";
+			$page_links .= join( "</li>\n\t<li>", $links );
+			$page_links .= "</li>\n</ul>\n";
+
+			echo "<nav class=\"clearfix\">\n{$page_links}\n</nav>";
+		}
+
+	} else {
+		echo '<ul class="pager">';
+		previous_post_link( '<li class="previous nav-previous">%link</li>', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'binarybootstrap' ) . '</span> %title' );
+		next_post_link( '<li class="next nav-next">%link</ul>', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'binarybootstrap' ) . '</span>' );
+		echo '</ul>';
+
 	}
 
-	// Don't print empty markup in archives if there's only one page.
-	if ( $wp_query->max_num_pages < 2 && ( is_home() || is_archive() || is_search() ) )
-		return;
-
-	$nav_class = ( is_single() ) ? 'navigation-post' : 'navigation-paging';
-
-	?>
-	<nav role="navigation" id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo $nav_class; ?>">
-		<h1 class="assistive-text">
-			<?php _e( 'Post navigation', 'binarybootstrap' ); ?>
-		</h1>
-	
-		<?php if ( is_single() ) : // navigation links for single posts ?>
-	
-		<?php previous_post_link( '<div class="previous">%link</div>', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'binarybootstrap' ) . '</span> %title' ); ?>
-		<?php next_post_link( '<div class="next">%link</div>', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'binarybootstrap' ) . '</span>' ); ?>
-	
-		<?php elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) : // navigation links for home, archive, and search pages ?>
-	
-		<?php if ( get_next_posts_link() ) : ?>
-		<div class="previous">
-			<?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'binarybootstrap' ) ); ?>
-		</div>
-		<?php endif; ?>
-	
-		<?php if ( get_previous_posts_link() ) : ?>
-		<div class="next">
-			<?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'binarybootstrap' ) ); ?>
-		</div>
-		<?php endif; ?>
-	
-		<?php endif; ?>
-	
-	</nav>
-	<!-- #<?php echo esc_html( $nav_id ); ?> -->
-<?php
 }
 
 /**

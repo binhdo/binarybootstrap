@@ -32,7 +32,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php binarybootstrap_content_nav( 'nav-below' ); ?>
+			<?php binarybootstrap_content_nav(); ?>
 
 		<?php else : ?>
 
