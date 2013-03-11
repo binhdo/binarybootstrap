@@ -57,8 +57,8 @@ class BinaryBootstrap_Walker_Comment extends Walker_Comment {
 		extract($args, EXTR_SKIP);
 
 		?>
-		<li class="media comment-<?php comment_ID() ?>"><?php echo get_avatar( $comment, $size = '64' ); ?>
-			<div class="media-body">
+		<li id="li-comment-<?php comment_ID() ?>" class="media"><?php echo get_avatar( $comment, $size = '64' ); ?>
+			<div id="comment-<?php comment_ID() ?>" class="media-body">
 				<h4 class="media-heading">
 					<?php echo get_comment_author_link(); ?>
 				</h4>
