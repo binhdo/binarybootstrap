@@ -136,6 +136,10 @@ Tags: responsive, bootstrap
 	
 }
 
+.attachment .entry-attachment,.attachment p.attachment {
+	text-align: center;
+}
+
 /* Make sure embeds and iframes fit their containers */
 embed,iframe,object {
 	max-width: 100%;
