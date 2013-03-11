@@ -26,10 +26,20 @@ function binarybootstrap_primary_class( $has_sidebar = true ) {
 
 /**
  * #secondary .widget-area class
+ * 
+ * @return string
  */
 function binarybootstrap_secondary_class() {
 	return 'span4';
 
+}
+
+/**
+ * @return string
+ */
+function binarybootstrap_footer_widgets_class() {
+	return 'span4';
+	
 }
 
 /**

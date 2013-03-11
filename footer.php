@@ -12,6 +12,7 @@
 	</div><!-- #main -->
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
+		<?php get_sidebar( 'footer' ); ?>
 		<div class="site-info">
 			<?php do_action( 'binarybootstrap_credits' ); ?>
 			<a href="http://wordpress.org/" title="<?php esc_attr_e( 'A Semantic Personal Publishing Platform', 'binarybootstrap' ); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', 'binarybootstrap' ), 'WordPress' ); ?></a>

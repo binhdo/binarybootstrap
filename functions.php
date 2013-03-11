@@ -45,7 +45,7 @@ require_once locate_template('/inc/jetpack.php');
  * Set the content width based on the theme's design and stylesheet.
  *
  * @since Binary Bootstrap 1.0
- */
+*/
 if ( ! isset( $content_width ) )
 	$content_width = 640; /* pixels */
 
@@ -70,25 +70,25 @@ function binarybootstrap_setup() {
 
 	/**
 	 * Add default posts and comments RSS feed links to head
-	 */
+	*/
 	add_theme_support( 'automatic-feed-links' );
 
 	/**
 	 * Enable support for Post Thumbnails
-	 */
+	*/
 	add_theme_support( 'post-thumbnails' );
 
 	/**
 	 * This theme uses wp_nav_menu() in two locations.
-	 */
+	*/
 	register_nav_menus( array(
-		'top_nav' => __( 'Top Navbar', 'binarybootstrap' ),
-		'primary' => __( 'Primary Menu', 'binarybootstrap' ),
+	'top_nav' => __( 'Top Navbar', 'binarybootstrap' ),
+	'primary' => __( 'Primary Menu', 'binarybootstrap' ),
 	) );
 
 	/**
 	 * Enable support for Post Formats
-	 */
+	*/
 	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
 }
 add_action( 'after_setup_theme', 'binarybootstrap_setup' );
@@ -104,11 +104,11 @@ add_action( 'after_setup_theme', 'binarybootstrap_setup' );
  * @todo Remove the 3.3 support when WordPress 3.6 is released.
  *
  * Hooks into the after_setup_theme action.
- */
+*/
 function binarybootstrap_register_custom_background() {
 	$args = array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
+			'default-color' => 'ffffff',
+			'default-image' => '',
 	);
 
 	$args = apply_filters( 'binarybootstrap_custom_background_args', $args );
@@ -128,29 +128,40 @@ add_action( 'after_setup_theme', 'binarybootstrap_register_custom_background' );
  * Register widgetized area and update sidebar with default widgets
  *
  * @since Binary Bootstrap 1.0
- */
+*/
 function binarybootstrap_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'binarybootstrap' ),
-		'id'            => 'sidebar-1',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
+	'name'          => __( 'Sidebar', 'binarybootstrap' ),
+	'id'            => 'sidebar-1',
+	'description'   => __( 'The Sidebar containing the main widget areas.', 'binarybootstrap' ),
+	'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+	'after_widget'  => '</aside>',
+	'before_title'  => '<h3 class="widget-title">',
+	'after_title'   => '</h3>',
+	) );
+
+	register_sidebar( array(
+	'name'			=> __( 'Footer Sidebar', 'binarybootstrap' ),
+	'id'			=> 'sidebar-2',
+	'description'   => __( 'The Sidebar containing the footer widget area.', 'binarybootstrap' ),
+	'before_widget' => '<aside id="%1$s" class="' . binarybootstrap_footer_widgets_class() . ' widget %2$s">',
+	'after_widget'  => '</aside>',
+	'before_title'  => '<h3 class="widget-title">',
+	'after_title'   => '</h3>',
 	) );
 }
 add_action( 'widgets_init', 'binarybootstrap_widgets_init' );
 
 /**
  * Enqueue scripts and styles
- */
+*/
 function binarybootstrap_scripts_styles() {
 	// Load Bootstrap stylesheet
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', false, null );
-	
+
 	// Load style.css
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
-	
+
 	// Load Bootstrap javascripts
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), null, true );
 
