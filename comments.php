@@ -71,6 +71,6 @@
 		<p class="no-comments"><?php _e( 'Comments are closed.', 'binarybootstrap' ); ?></p>
 	<?php endif; ?>
 
-	<?php comment_form(); ?>
+	<?php binarybootstrap_comment_form(); ?>
 
 </div><!-- #comments -->
