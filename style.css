@@ -19,6 +19,9 @@ Tags: responsive, bootstrap
 
 /* =Global
 ----------------------------------------------- */
+body.top-nav-fixed {
+	padding-top: 50px;
+}
 
 /* Text elements */
 

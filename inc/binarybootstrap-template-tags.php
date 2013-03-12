@@ -18,7 +18,7 @@ function binarybootstrap_primary_class( $has_sidebar = true ) {
 	if ( $has_sidebar && is_active_sidebar( 'sidebar-1' ) ) {
 		$class = 'span8';
 	} else {
-		$class = is_attachment() ? 'span10 offset1' : 'span12';
+		$class = 'span12';
 	}
 
 	return $class;
@@ -71,18 +71,21 @@ function binarybootstrap_nav_menu( $location, $class, $brand_text = null, $brand
 		if ( ! $brand_url )
 			$brand_url = home_url( '/' );
 		?>
-<nav class="<?php echo $class; ?>" role="navigation">
-	<div class="container">
-		<a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-		</a>
-		<?php if ( $brand_text ) : ?>
-		<a class="navbar-brand" href="<?php echo esc_url( $brand_url ); ?>"><?php echo esc_attr( $brand_text ); ?> </a>
-		<?php endif; ?>
-		<div class="nav-collapse collapse navbar-responsive-collapse">
-			<?php wp_nav_menu( $args ); ?>
-		</div>
-	</div>
-</nav>
+		<nav class="<?php echo $class; ?>" role="navigation">
+			<div class="container">
+				<a class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<?php if ( $brand_text ) : ?>
+				<a class="navbar-brand" href="<?php echo esc_url( $brand_url ); ?>"><?php echo esc_attr( $brand_text ); ?> </a>
+				<?php endif; ?>
+				<div class="nav-collapse collapse">
+					<?php wp_nav_menu( $args ); ?>
+				</div>
+			</div>
+		</nav>
 <?php
 	}
 }

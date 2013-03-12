@@ -25,6 +25,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+<?php binarybootstrap_nav_menu( 'top_nav', 'navbar navbar-fixed-top', __( 'Home', 'binarybootstrap' ) ); ?>
 <div id="page" class="container hfeed site">
 	<?php do_action( 'before' ); ?>
 	<header id="masthead" class="site-header" role="banner">

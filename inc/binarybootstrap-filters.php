@@ -130,10 +130,10 @@ function binarybootstrap_gallery_shortcode($output, $attr) {
 		$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
 		$image_meta  = wp_get_attachment_metadata( $id );
 		$orientation = ( $image_meta['height'] > $image_meta['width'] ) ? 'portrait' : 'landscape';
-		
+
 		$clear_class = (0 == $i++ % $columns) ? ' clear' : '';
 		$span = 'span' . floor( 12 / $columns );
-		
+
 		$output .= "<{$itemtag} class='{$span}{$clear_class} gallery-item'>";
 		$output .= "
 		<{$icontag} class='gallery-icon {$orientation}'>
@@ -161,9 +161,10 @@ add_filter( 'post_gallery', 'binarybootstrap_gallery_shortcode', 10, 2 );
 */
 function binarybootstrap_body_classes( $classes ) {
 	// Adds a class of group-blog to blogs with more than 1 published author
-	if ( is_multi_author() ) {
+	if ( is_multi_author() )
 		$classes[] = 'group-blog';
-	}
+	if ( has_nav_menu( 'top_nav' ) )
+		$classes[] = 'top-nav-fixed';
 
 	return $classes;
 }
