@@ -34,7 +34,7 @@ require_once locate_template( '/inc/binarybootstrap-customizer.php' );
 /**
  * Implement the Custom Header feature
  */
-require_once locate_template( '/inc/binarybootstrap-custom-header.php' );
+// require_once locate_template( '/inc/binarybootstrap-custom-header.php' );
 
 /*
  * Load Jetpack compatibility file.
