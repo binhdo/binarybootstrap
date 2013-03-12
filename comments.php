@@ -68,7 +68,7 @@
 		// If comments are closed and there are comments, let's leave a little note, shall we?
 		if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
 	?>
-		<p class="no-comments"><?php _e( 'Comments are closed.', 'binarybootstrap' ); ?></p>
+		<div class="alert alert-error no-comments"><?php _e( 'Comments are closed.', 'binarybootstrap' ); ?></div>
 	<?php endif; ?>
 
 	<?php binarybootstrap_comment_form(); ?>
