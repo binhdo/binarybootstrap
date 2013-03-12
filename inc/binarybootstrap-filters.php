@@ -134,7 +134,7 @@ function binarybootstrap_gallery_shortcode($output, $attr) {
 		$clear_class = (0 == $i++ % $columns) ? ' clear' : '';
 		$span = 'span' . floor( 12 / $columns );
 
-		$output .= "<{$itemtag} class='{$span}{$clear_class} gallery-item'>";
+		$output .= "<{$itemtag} class='{$span}{$clear_class} text-center gallery-item'>";
 		$output .= "
 		<{$icontag} class='gallery-icon {$orientation}'>
 		$link
@@ -153,6 +153,69 @@ function binarybootstrap_gallery_shortcode($output, $attr) {
 	return $output;
 }
 add_filter( 'post_gallery', 'binarybootstrap_gallery_shortcode', 10, 2 );
+
+/**
+ * Adds a .thumbnail class to linked images in a gallery
+ *
+ * @param unknown $link
+ * @param unknown $id
+ * @param unknown $size
+ * @param unknown $permalink
+ * @param unknown $icon
+ * @param unknown $text
+ * @return Ambigous <unknown, mixed>
+*/
+function binarybootstrap_get_attachment_link( $link, $id, $size, $permalink, $icon, $text ) {
+	return ( ! $text ) ? str_replace( '<a', '<a class="thumbnail" ', $link ) : $link;
+}
+add_filter( 'wp_get_attachment_link', 'binarybootstrap_get_attachment_link', 10, 6 );
+
+/**
+ * The Caption shortcode.
+ *
+ * Allows a plugin to replace the content that would otherwise be returned. The
+ * filter is 'img_caption_shortcode' and passes an empty string, the attr
+ * parameter and the content parameter values.
+ *
+ * The supported attributes for the shortcode are 'id', 'align', 'width', and
+ * 'caption'.
+ *
+ * @since 2.6.0
+ *
+ * @param array $attr Attributes attributed to the shortcode.
+ * @param string $content Optional. Shortcode content.
+ * @return string
+*/
+function binarybootstrap_img_caption_shortcode($output, $attr, $content) {
+	// New-style shortcode with the caption inside the shortcode with the link and image tags.
+	if ( ! isset( $attr['caption'] ) ) {
+		if ( preg_match( '#((?:<a [^>]+>\s*)?<img [^>]+>(?:\s*</a>)?)(.*)#is', $content, $matches ) ) {
+			$content = $matches[1];
+			$attr['caption'] = trim( $matches[2] );
+		}
+	}
+
+	// Allow plugins/themes to override the default caption template.
+	// $output = apply_filters('img_caption_shortcode', '', $attr, $content);
+	if ( $output != '' )
+		return $output;
+
+	extract(shortcode_atts(array(
+	'id'	=> '',
+	'align'	=> 'alignnone',
+	'width'	=> '',
+	'caption' => ''
+			), $attr, 'caption'));
+
+	if ( 1 > (int) $width || empty($caption) )
+		return $content;
+
+	if ( $id ) $id = 'id="' . esc_attr($id) . '" ';
+
+	return '<figure ' . $id . 'class="text-center wp-caption ' . esc_attr($align) . '" style="width: ' . (int) $width . 'px">'
+			. do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $caption . '</figcaption></figure>';
+}
+add_filter( 'img_caption_shortcode', 'binarybootstrap_img_caption_shortcode', 10, 3 );
 
 /**
  * Adds custom classes to the array of body classes.
