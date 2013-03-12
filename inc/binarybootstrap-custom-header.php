@@ -22,8 +22,8 @@
 function binarybootstrap_custom_header_setup() {
 	$args = array(
 		// Text color and image (empty to use none).
-		'default-text-color' => '220e10',
-		'default-image' => '%s/images/headers/circle.png',
+		'default-text-color' => '',
+		'default-image' => '',
 		// Set height and width, with a maximum value for the width.
 		'height' => 230,
 		'width' => 1600,
