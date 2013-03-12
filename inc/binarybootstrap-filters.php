@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Custom functions that act independently of the theme templates
  *
@@ -25,7 +26,7 @@ function binarybootstrap_gallery_shortcode($output, $attr) {
 	static $instance = 0;
 	$instance++;
 
-	if ( ! empty( $attr['ids'] ) ) {
+	if ( !empty( $attr['ids'] ) ) {
 		// 'ids' is explicitly ordered, unless you specify otherwise.
 		if ( empty( $attr['orderby'] ) )
 			$attr['orderby'] = 'post__in';
@@ -44,59 +45,62 @@ function binarybootstrap_gallery_shortcode($output, $attr) {
 			unset( $attr['orderby'] );
 	}
 
-	extract(shortcode_atts(array(
-	'order'      => 'ASC',
-	'orderby'    => 'menu_order ID',
-	'id'         => $post->ID,
-	'itemtag'    => 'figure',
-	'icontag'    => 'div',
-	'captiontag' => 'figcaption',
-	'columns'    => 3,
-	'size'       => 'thumbnail',
-	'include'    => '',
-	'exclude'    => ''
-			), $attr, 'gallery'));
+	extract( shortcode_atts( array(
+		'order' => 'ASC',
+		'orderby' => 'menu_order ID',
+		'id' => $post->ID,
+		'itemtag' => 'figure',
+		'icontag' => 'div',
+		'captiontag' => 'figcaption',
+		'columns' => 3,
+		'size' => 'thumbnail',
+		'include' => '',
+		'exclude' => ''
+					), $attr, 'gallery' ) );
 
-	$id = intval($id);
+	$id = intval( $id );
 	if ( 'RAND' == $order )
 		$orderby = 'none';
 
-	if ( !empty($include) ) {
-		$_attachments = get_posts( array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+	if ( !empty( $include ) ) {
+		$_attachments = get_posts( array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image',
+			'order' => $order, 'orderby' => $orderby) );
 
 		$attachments = array();
 		foreach ( $_attachments as $key => $val ) {
 			$attachments[$val->ID] = $_attachments[$key];
 		}
-	} elseif ( !empty($exclude) ) {
-		$attachments = get_children( array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+	} elseif ( !empty( $exclude ) ) {
+		$attachments = get_children( array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment',
+			'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
 	} else {
-		$attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+		$attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image',
+			'order' => $order, 'orderby' => $orderby) );
 	}
 
-	if ( empty($attachments) )
+	if ( empty( $attachments ) )
 		return '';
 
 	if ( is_feed() ) {
 		$output = "\n";
 		foreach ( $attachments as $att_id => $attachment )
-			$output .= wp_get_attachment_link($att_id, $size, true) . "\n";
+			$output .= wp_get_attachment_link( $att_id, $size, true ) . "\n";
 		return $output;
 	}
 
-	$itemtag = tag_escape($itemtag);
-	$captiontag = tag_escape($captiontag);
-	$icontag = tag_escape($icontag);
+	$itemtag = tag_escape( $itemtag );
+	$captiontag = tag_escape( $captiontag );
+	$icontag = tag_escape( $icontag );
 	$valid_tags = wp_kses_allowed_html( 'post' );
-	if ( ! isset( $valid_tags[ $itemtag ] ) )
+	if ( !isset( $valid_tags[$itemtag] ) )
 		$itemtag = 'dl';
-	if ( ! isset( $valid_tags[ $captiontag ] ) )
+	if ( !isset( $valid_tags[$captiontag] ) )
 		$captiontag = 'dd';
-	if ( ! isset( $valid_tags[ $icontag ] ) )
+	if ( !isset( $valid_tags[$icontag] ) )
 		$icontag = 'dt';
 
-	$columns = intval($columns);
-	$itemwidth = $columns > 0 ? floor(100/$columns) : 100;
+	$columns = intval( $columns );
+	$itemwidth = $columns > 0 ? floor( 100 / $columns ) : 100;
 	$float = is_rtl() ? 'right' : 'left';
 
 	$selector = "gallery-{$instance}";
@@ -127,8 +131,8 @@ function binarybootstrap_gallery_shortcode($output, $attr) {
 
 	$i = 0;
 	foreach ( $attachments as $id => $attachment ) {
-		$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
-		$image_meta  = wp_get_attachment_metadata( $id );
+		$link = isset( $attr['link'] ) && 'file' == $attr['link'] ? wp_get_attachment_link( $id, $size, false, false ) : wp_get_attachment_link( $id, $size, true, false );
+		$image_meta = wp_get_attachment_metadata( $id );
 		$orientation = ( $image_meta['height'] > $image_meta['width'] ) ? 'portrait' : 'landscape';
 
 		$clear_class = (0 == $i++ % $columns) ? ' clear' : '';
@@ -139,10 +143,10 @@ function binarybootstrap_gallery_shortcode($output, $attr) {
 		<{$icontag} class='gallery-icon {$orientation}'>
 		$link
 		</{$icontag}>";
-		if ( $captiontag && trim($attachment->post_excerpt) ) {
+		if ( $captiontag && trim( $attachment->post_excerpt ) ) {
 			$output .= "
 			<{$captiontag} class='text-center wp-caption-text gallery-caption'>
-			" . wptexturize($attachment->post_excerpt) . "
+			" . wptexturize( $attachment->post_excerpt ) . "
 			</{$captiontag}>";
 		}
 		$output .= "</{$itemtag}>";
@@ -152,6 +156,7 @@ function binarybootstrap_gallery_shortcode($output, $attr) {
 
 	return $output;
 }
+
 add_filter( 'post_gallery', 'binarybootstrap_gallery_shortcode', 10, 2 );
 
 /**
@@ -164,10 +169,11 @@ add_filter( 'post_gallery', 'binarybootstrap_gallery_shortcode', 10, 2 );
  * @param unknown $icon
  * @param unknown $text
  * @return Ambigous <unknown, mixed>
-*/
-function binarybootstrap_get_attachment_link( $link, $id, $size, $permalink, $icon, $text ) {
-	return ( ! $text ) ? str_replace( '<a', '<a class="thumbnail" ', $link ) : $link;
+ */
+function binarybootstrap_get_attachment_link($link, $id, $size, $permalink, $icon, $text) {
+	return (!$text ) ? str_replace( '<a', '<a class="thumbnail" ', $link ) : $link;
 }
+
 add_filter( 'wp_get_attachment_link', 'binarybootstrap_get_attachment_link', 10, 6 );
 
 /**
@@ -185,10 +191,10 @@ add_filter( 'wp_get_attachment_link', 'binarybootstrap_get_attachment_link', 10,
  * @param array $attr Attributes attributed to the shortcode.
  * @param string $content Optional. Shortcode content.
  * @return string
-*/
+ */
 function binarybootstrap_img_caption_shortcode($output, $attr, $content) {
 	// New-style shortcode with the caption inside the shortcode with the link and image tags.
-	if ( ! isset( $attr['caption'] ) ) {
+	if ( !isset( $attr['caption'] ) ) {
 		if ( preg_match( '#((?:<a [^>]+>\s*)?<img [^>]+>(?:\s*</a>)?)(.*)#is', $content, $matches ) ) {
 			$content = $matches[1];
 			$attr['caption'] = trim( $matches[2] );
@@ -200,29 +206,31 @@ function binarybootstrap_img_caption_shortcode($output, $attr, $content) {
 	if ( $output != '' )
 		return $output;
 
-	extract(shortcode_atts(array(
-	'id'	=> '',
-	'align'	=> 'alignnone',
-	'width'	=> '',
-	'caption' => ''
-			), $attr, 'caption'));
+	extract( shortcode_atts( array(
+		'id' => '',
+		'align' => 'alignnone',
+		'width' => '',
+		'caption' => ''
+					), $attr, 'caption' ) );
 
-	if ( 1 > (int) $width || empty($caption) )
+	if ( 1 > (int) $width || empty( $caption ) )
 		return $content;
 
-	if ( $id ) $id = 'id="' . esc_attr($id) . '" ';
+	if ( $id )
+		$id = 'id="' . esc_attr( $id ) . '" ';
 
-	return '<figure ' . $id . 'class="text-center wp-caption ' . esc_attr($align) . '" style="width: ' . (int) $width . 'px">'
+	return '<figure ' . $id . 'class="text-center wp-caption ' . esc_attr( $align ) . '" style="width: ' . (int) $width . 'px">'
 			. do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $caption . '</figcaption></figure>';
 }
+
 add_filter( 'img_caption_shortcode', 'binarybootstrap_img_caption_shortcode', 10, 3 );
 
 /**
  * Adds custom classes to the array of body classes.
  *
  * @since Binary Bootstrap 1.0
-*/
-function binarybootstrap_body_classes( $classes ) {
+ */
+function binarybootstrap_body_classes($classes) {
 	// Adds a class of group-blog to blogs with more than 1 published author
 	if ( is_multi_author() )
 		$classes[] = 'group-blog';
@@ -231,31 +239,33 @@ function binarybootstrap_body_classes( $classes ) {
 
 	return $classes;
 }
+
 add_filter( 'body_class', 'binarybootstrap_body_classes' );
 
 /**
  * Filter in a link to a content ID attribute for the next/previous image links on image attachment pages
  *
  * @since Binary Bootstrap 1.0
-*/
-function binarybootstrap_enhanced_image_navigation( $url, $id ) {
-	if ( ! is_attachment() && ! wp_attachment_is_image( $id ) )
+ */
+function binarybootstrap_enhanced_image_navigation($url, $id) {
+	if ( !is_attachment() && !wp_attachment_is_image( $id ) )
 		return $url;
 
 	$image = get_post( $id );
-	if ( ! empty( $image->post_parent ) && $image->post_parent != $id )
+	if ( !empty( $image->post_parent ) && $image->post_parent != $id )
 		$url .= '#main';
 
 	return $url;
 }
+
 add_filter( 'attachment_link', 'binarybootstrap_enhanced_image_navigation', 10, 2 );
 
 /**
  * Filters wp_title to print a neat <title> tag based on what is being viewed.
  *
  * @since Binary Bootstrap 1.1
-*/
-function binarybootstrap_wp_title( $title, $sep ) {
+ */
+function binarybootstrap_wp_title($title, $sep) {
 	global $page, $paged;
 
 	if ( is_feed() )
@@ -275,10 +285,12 @@ function binarybootstrap_wp_title( $title, $sep ) {
 
 	return $title;
 }
+
 add_filter( 'wp_title', 'binarybootstrap_wp_title', 10, 2 );
 
-function binarybootstrap_get_avatar( $avatar ) {
+function binarybootstrap_get_avatar($avatar) {
 	$avatar = str_replace( "class='avatar", "class='avatar pull-left media-object", $avatar );
 	return $avatar;
 }
+
 add_filter( 'get_avatar', 'binarybootstrap_get_avatar' );
