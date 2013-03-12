@@ -1,184 +1,171 @@
 <?php
 /**
- * Sample implementation of the Custom Header feature
- * http://codex.wordpress.org/Custom_Headers
+ * Implements a custom header for Binary Bootstrap.
+ * See http://codex.wordpress.org/Custom_Headers
  *
- * You can add an optional custom header image to header.php like so ...
-
-	<?php $header_image = get_header_image();
-	if ( ! empty( $header_image ) ) { ?>
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-			<img src="<?php header_image(); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="" />
-		</a>
-	<?php } // if ( ! empty( $header_image ) ) ?>
-
- *
- * @package Binary Bootstrap
+ * @package WordPress
+ * @subpackage Twenty_Thirteen
  * @since Binary Bootstrap 1.0
  */
 
 /**
- * Setup the WordPress core custom header feature.
+ * Sets up the WordPress core custom header arguments and settings.
  *
- * Use add_theme_support to register support for WordPress 3.4+
- * as well as provide backward compatibility for previous versions.
- * Use feature detection of wp_get_theme() which was introduced
- * in WordPress 3.4.
+ * @uses add_theme_support() to register support for 3.4 and up.
+ * @uses binarybootstrap_header_style() to style front-end.
+ * @uses binarybootstrap_admin_header_style() to style wp-admin form.
+ * @uses binarybootstrap_admin_header_image() to add custom markup to wp-admin form.
+ * @uses register_default_headers() to set up the bundled header images.
  *
- * @todo Rework this function to remove WordPress 3.4 support when WordPress 3.6 is released.
- *
- * @uses binarybootstrap_header_style()
- * @uses binarybootstrap_admin_header_style()
- * @uses binarybootstrap_admin_header_image()
- *
- * @package Binary Bootstrap
+ * @since Binary Bootstrap 1.0
  */
 function binarybootstrap_custom_header_setup() {
 	$args = array(
-		'default-image'          => '',
-		'default-text-color'     => '000',
-		'width'                  => 1000,
-		'height'                 => 250,
-		'flex-height'            => true,
-		'wp-head-callback'       => 'binarybootstrap_header_style',
-		'admin-head-callback'    => 'binarybootstrap_admin_header_style',
+		// Text color and image (empty to use none).
+		'default-text-color' => '220e10',
+		'default-image' => '%s/images/headers/circle.png',
+		// Set height and width, with a maximum value for the width.
+		'height' => 230,
+		'width' => 1600,
+		'flex-height' => true,
+		// Callbacks for styling the header and the admin preview.
+		'wp-head-callback' => 'binarybootstrap_header_style',
+		'admin-head-callback' => 'binarybootstrap_admin_header_style',
 		'admin-preview-callback' => 'binarybootstrap_admin_header_image',
 	);
 
-	$args = apply_filters( 'binarybootstrap_custom_header_args', $args );
-
-	if ( function_exists( 'wp_get_theme' ) ) {
-		add_theme_support( 'custom-header', $args );
-	} else {
-		// Compat: Versions of WordPress prior to 3.4.
-		define( 'HEADER_TEXTCOLOR',    $args['default-text-color'] );
-		define( 'HEADER_IMAGE',        $args['default-image'] );
-		define( 'HEADER_IMAGE_WIDTH',  $args['width'] );
-		define( 'HEADER_IMAGE_HEIGHT', $args['height'] );
-		add_custom_image_header( $args['wp-head-callback'], $args['admin-head-callback'], $args['admin-preview-callback'] );
-	}
+	add_theme_support( 'custom-header', $args );
 }
+
 add_action( 'after_setup_theme', 'binarybootstrap_custom_header_setup' );
 
 /**
- * Shiv for get_custom_header().
+ * Styles the header text displayed on the blog.
  *
- * get_custom_header() was introduced to WordPress
- * in version 3.4. To provide backward compatibility
- * with previous versions, we will define our own version
- * of this function.
- *
- * @todo Remove this function when WordPress 3.6 is released.
- * @return stdClass All properties represent attributes of the curent header image.
- *
- * @package Binary Bootstrap
- * @since Binary Bootstrap 1.1
- */
-
-if ( ! function_exists( 'get_custom_header' ) ) {
-	function get_custom_header() {
-		return (object) array(
-			'url'           => get_header_image(),
-			'thumbnail_url' => get_header_image(),
-			'width'         => HEADER_IMAGE_WIDTH,
-			'height'        => HEADER_IMAGE_HEIGHT,
-		);
-	}
-}
-
-if ( ! function_exists( 'binarybootstrap_header_style' ) ) :
-/**
- * Styles the header image and text displayed on the blog
- *
- * @see binarybootstrap_custom_header_setup().
+ * get_header_textcolor() options: Hide text (returns 'blank'), or any hex value.
  *
  * @since Binary Bootstrap 1.0
  */
 function binarybootstrap_header_style() {
+	$header_image = get_header_image();
+	$text_color = get_header_textcolor();
 
-	// If no custom options for text are set, let's bail
-	// get_header_textcolor() options: HEADER_TEXTCOLOR is default, hide text (returns 'blank') or any hex value
-	if ( HEADER_TEXTCOLOR == get_header_textcolor() )
+	// If no custom options for text are set, let's bail.
+	if ( empty( $header_image ) && $text_color == get_theme_support( 'custom-header', 'default-text-color' ) )
 		return;
-	// If we get this far, we have custom styles. Let's do this.
+
+	// If we get this far, we have custom styles.
 	?>
 	<style type="text/css">
 	<?php
-		// Has the text been hidden?
-		if ( 'blank' == get_header_textcolor() ) :
-	?>
-		.site-title,
-		.site-description {
-			position: absolute !important;
-			clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-			clip: rect(1px, 1px, 1px, 1px);
-		}
-	<?php
-		// If the user has set a custom color for the text use that
-		else :
-	?>
-		.site-title a,
-		.site-description {
-			color: #<?php echo get_header_textcolor(); ?>;
-		}
+	if ( !empty( $header_image ) ) :
+		?>
+			.site-header {
+				background: url(<?php header_image(); ?>) no-repeat scroll top;
+				background-size: 1600px auto;
+			}
+		<?php
+	endif;
+
+// Has the text been hidden?
+	if ( !display_header_text() ) :
+		?>
+			.site-title, .site-description {
+				position: absolute !important;
+				clip: rect(1px 1px 1px 1px); /* IE7 */
+				clip: rect(1px, 1px, 1px, 1px);
+			}
+		<?php
+		if ( empty( $header_image ) ) :
+			?>
+				.site-header hgroup {
+					min-height: 0;
+				}
+			<?php
+		endif;
+
+// If the user has set a custom color for the text, use that.
+	elseif ( $text_color != get_theme_support( 'custom-header', 'default-text-color' ) ) :
+		?>
+			.site-title, .site-description {
+				color: #<?php echo esc_attr( $text_color ); ?>;
+			}
 	<?php endif; ?>
 	</style>
 	<?php
 }
-endif; // binarybootstrap_header_style
 
-if ( ! function_exists( 'binarybootstrap_admin_header_style' ) ) :
 /**
  * Styles the header image displayed on the Appearance > Header admin panel.
- *
- * @see binarybootstrap_custom_header_setup().
  *
  * @since Binary Bootstrap 1.0
  */
 function binarybootstrap_admin_header_style() {
-?>
+	$header_image = get_header_image();
+	?>
 	<style type="text/css">
-	.appearance_page_custom-header #headimg {
-		border: none;
-	}
-	#headimg h1,
-	#desc {
-	}
-	#headimg h1 {
-	}
-	#headimg h1 a {
-	}
-	#desc {
-	}
-	#headimg img {
-	}
+		.appearance_page_custom-header #headimg {
+			border: none;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing:    border-box;
+			box-sizing:         border-box;
+			<?php
+			if ( !empty( $header_image ) ) {
+				echo 'background: url(' . esc_url( $header_image ) . ') no-repeat scroll top; background-size: 1600px auto;';
+			}
+			?>
+			padding: 0 20px;
+		}
+		#headimg .hgroup {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing:    border-box;
+			box-sizing:         border-box;
+			margin: 0 auto;
+			max-width: 1040px;
+			<?php
+			if ( !empty( $header_image ) || display_header_text() ) {
+				echo 'min-height: 230px;';
+			}
+			?>
+			width: 100%;
+		}
+		<?php if ( !display_header_text() ) : ?>
+			#headimg h1, #headimg h2 {
+				position: absolute !important;
+				clip: rect(1px 1px 1px 1px); /* IE7 */
+				clip: rect(1px, 1px, 1px, 1px);
+			}
+		<?php endif; ?>
+		#headimg h1 {
+		}
+		#headimg h1 a {
+		}
+		#headimg h1 a:hover {
+		}
+		#headimg h2 {
+		}
+		.default-header img {
+			max-width: 230px;
+			width: auto;
+		}
 	</style>
-<?php
+	<?php
 }
-endif; // binarybootstrap_admin_header_style
 
-if ( ! function_exists( 'binarybootstrap_admin_header_image' ) ) :
 /**
- * Custom header image markup displayed on the Appearance > Header admin panel.
- *
- * @see binarybootstrap_custom_header_setup().
+ * Outputs markup to be displayed on the Appearance > Header admin panel.
+ * This callback overrides the default markup displayed there.
  *
  * @since Binary Bootstrap 1.0
  */
-function binarybootstrap_admin_header_image() { ?>
-	<div id="headimg">
-		<?php
-		if ( 'blank' == get_header_textcolor() || '' == get_header_textcolor() )
-			$style = ' style="display:none;"';
-		else
-			$style = ' style="color:#' . get_header_textcolor() . ';"';
-		?>
-		<h1><a id="name"<?php echo $style; ?> onclick="return false;" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
-		<div id="desc"<?php echo $style; ?>><?php bloginfo( 'description' ); ?></div>
-		<?php $header_image = get_header_image();
-		if ( ! empty( $header_image ) ) : ?>
-			<img src="<?php echo esc_url( $header_image ); ?>" alt="" />
-		<?php endif; ?>
+function binarybootstrap_admin_header_image() {
+	?>
+	<div id="headimg" style="background: url(<?php header_image(); ?>) no-repeat scroll top; background-size: 1600px auto;">
+		<?php $style = ' style="color:#' . get_header_textcolor() . ';"'; ?>
+		<div class="hgroup">
+			<h1><a id="name"<?php echo $style; ?> onclick="return false;" href="#"><?php bloginfo( 'name' ); ?></a></h1>
+			<h2 id="desc"<?php echo $style; ?>><?php bloginfo( 'description' ); ?></h2>
+		</div>
 	</div>
-<?php }
-endif; // binarybootstrap_admin_header_image
+	<?php
+}
