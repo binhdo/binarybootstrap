@@ -47,7 +47,7 @@ require_once locate_template( '/inc/jetpack.php' );
  * @since Binary Bootstrap 1.0
  */
 if ( !isset( $content_width ) )
-	$content_width = 640; /* pixels */
+	$content_width = 940; /* pixels */
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -142,3 +142,16 @@ function binarybootstrap_scripts_styles() {
 }
 
 add_action( 'wp_enqueue_scripts', 'binarybootstrap_scripts_styles' );
+
+/**
+ * Adjust $content_width
+ * 
+ */
+function binarybootstrap_content_width() {
+	global $content_width;
+	
+	if ( is_active_sidebar( 'sidebar-1' ) )
+		$content_width = 770;
+}
+
+add_action( 'template_redirect', 'binarybootstrap_content_width' );
