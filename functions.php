@@ -31,11 +31,6 @@ require_once locate_template( '/inc/binarybootstrap-walker-menu.php' );
  */
 require_once locate_template( '/inc/binarybootstrap-customizer.php' );
 
-/**
- * Implement the Custom Header feature
- */
-// require_once locate_template( '/inc/binarybootstrap-custom-header.php' );
-
 /*
  * Load Jetpack compatibility file.
  */
@@ -149,7 +144,7 @@ add_action( 'wp_enqueue_scripts', 'binarybootstrap_scripts_styles' );
  */
 function binarybootstrap_content_width() {
 	global $content_width;
-	
+
 	if ( is_active_sidebar( 'sidebar-1' ) )
 		$content_width = 770;
 }
