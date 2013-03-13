@@ -19,7 +19,6 @@ Tags: responsive, bootstrap
 body.top-nav-fixed {
 	padding-top: 50px;
 }
-
 body.admin-bar > nav.navbar-fixed-top {
 	padding-top: 28px;
 }
