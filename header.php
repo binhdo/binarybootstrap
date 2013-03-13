@@ -28,13 +28,18 @@
 	<?php binarybootstrap_nav_menu( 'top_nav', 'navbar navbar-fixed-top', __( 'Home', 'binarybootstrap' ) ); ?>
 	<div id="page" class="container hfeed site">
 		<?php do_action( 'before' ); ?>
-		<?php $site_header = get_theme_mod( 'site_header' ); ?>
-		<?php if ( $site_header !== 'no_header' || has_nav_menu( 'primary' ) ) : ?>
+		<?php
+		$site_title = get_theme_mod( 'display_site_title' );
+		$site_desc = get_theme_mod( 'display_site_description' );
+		?>
+		<?php if ( $site_title || $site_desc || has_nav_menu( 'primary' ) ) : ?>
 			<header id="masthead" class="site-header" role="banner">
-				<?php if ( $site_header !== 'no_header' ) : ?>
+				<?php if ( $site_title || $site_desc ) : ?>
 					<hgroup>
-						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-						<?php if ( $site_header === 'full_header' ) : ?>
+						<?php if ( $site_title ) : ?>
+							<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+						<?php endif; ?>
+						<?php if ( $site_desc ) : ?>
 							<h2 class="lead site-description"><?php bloginfo( 'description' ); ?></h2>
 						<?php endif; ?>
 					</hgroup>

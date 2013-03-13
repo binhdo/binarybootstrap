@@ -18,20 +18,26 @@ function binarybootstrap_customize_register($wp_customize) {
 	$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 
-	$wp_customize->add_setting( 'site_header', array(
-		'default' => 'full_header',
+	$wp_customize->add_setting( 'display_site_title', array(
+		'default' => 1,
 	) );
 
-	$wp_customize->add_control( 'site_header', array(
-		'settings' => 'site_header',
-		'label' => 'Header configuration',
+	$wp_customize->add_setting( 'display_site_description', array(
+		'default' => 1,
+	) );
+
+	$wp_customize->add_control( 'display_site_title', array(
+		'settings' => 'display_site_title',
+		'label' => __( 'Display site title' ),
 		'section' => 'title_tagline',
-		'type' => 'radio',
-		'choices' => array(
-			'full_header' => __( 'Site title and description', 'binarybootstrap' ),
-			'title_only' => __( 'Site title only', 'binarybootstrap' ),
-			'no_header' => __( 'No header text', 'binarybootstrap' ),
-		),
+		'type' => 'checkbox',
+	) );
+
+	$wp_customize->add_control( 'display_site_description', array(
+		'settings' => 'display_site_description',
+		'label' => __( 'Display site description' ),
+		'section' => 'title_tagline',
+		'type' => 'checkbox',
 	) );
 }
 
