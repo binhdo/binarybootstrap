@@ -46,7 +46,7 @@ get_header();
 				<div class="entry-content">
 
 					<div class="text-center entry-attachment">
-						<div class="attachment">
+						<figure class="attachment">
 							<?php
 								/**
 								 * Grab the IDs of all the image attachments in a gallery so we can get the URL of the next adjacent image in a gallery,
@@ -80,16 +80,16 @@ get_header();
 							?>
 
 							<a href="<?php echo $next_attachment_url; ?>" title="<?php echo esc_attr( get_the_title() ); ?>" rel="attachment"><?php
-								$attachment_size = apply_filters( 'binarybootstrap_attachment_size', array( 1200, 1200 ) ); // Filterable image size.
+								$attachment_size = apply_filters( 'binarybootstrap_attachment_size', array( 1170, 9999 ) ); // Filterable image size.
 								echo wp_get_attachment_image( $post->ID, $attachment_size );
 							?></a>
-						</div><!-- .attachment -->
 
 						<?php if ( ! empty( $post->post_excerpt ) ) : ?>
-						<div class="entry-caption">
+						<figcaption class="entry-caption">
 							<?php the_excerpt(); ?>
-						</div><!-- .entry-caption -->
+						</figcaption><!-- .entry-caption -->
 						<?php endif; ?>
+						</figure><!-- .attachment -->
 					</div><!-- .entry-attachment -->
 
 					<?php the_content(); ?>
