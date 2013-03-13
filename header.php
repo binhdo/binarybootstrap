@@ -13,32 +13,37 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" <?php language_attributes(); ?>> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
-<meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><?php wp_title( '|', true, 'right' ); ?></title>
-<link rel="profile" href="http://gmpg.org/xfn/11">
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-<!--[if lt IE 9]>
-<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
-<![endif]-->
-<?php wp_head(); ?>
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+	<!--[if lt IE 9]>
+	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
+	<![endif]-->
+	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
-<?php binarybootstrap_nav_menu( 'top_nav', 'navbar navbar-fixed-top', __( 'Home', 'binarybootstrap' ) ); ?>
-<div id="page" class="container hfeed site">
-	<?php do_action( 'before' ); ?>
-	<header id="masthead" class="site-header" role="banner">
-		<hgroup>
-		<?php if ( get_theme_mod( 'display_site_title' ) ) : ?>
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+	<?php binarybootstrap_nav_menu( 'top_nav', 'navbar navbar-fixed-top', __( 'Home', 'binarybootstrap' ) ); ?>
+	<div id="page" class="container hfeed site">
+		<?php do_action( 'before' ); ?>
+		<?php $site_header = get_theme_mod( 'site_header' ); ?>
+		<?php if ( $site_header !== 'no_header' || has_nav_menu( 'primary' ) ) : ?>
+			<header id="masthead" class="site-header" role="banner">
+				<?php if ( $site_header !== 'no_header' ) : ?>
+					<hgroup>
+						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+						<?php if ( $site_header === 'full_header' ) : ?>
+							<h2 class="lead site-description"><?php bloginfo( 'description' ); ?></h2>
+						<?php endif; ?>
+					</hgroup>
+				<?php endif; ?>
+				<?php binarybootstrap_nav_menu( 'primary', 'navbar', __( 'Home', 'binarybootstrap' ) ); ?>
+				<?php if ( has_nav_menu( 'primary' ) ) : ?>
+					<div class="assistive-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'binarybootstrap' ); ?>"><?php _e( 'Skip to content', 'binarybootstrap' ); ?></a></div>
+				<?php endif; ?>
+			</header><!-- #masthead -->
 		<?php endif; ?>
-		<?php if ( get_theme_mod( 'display_site_description' ) ) : ?>
-			<h2 class="lead site-description"><?php bloginfo( 'description' ); ?></h2>
-		<?php endif; ?>
-		</hgroup>
-		<?php binarybootstrap_nav_menu( 'primary', 'navbar', __( 'Home', 'binarybootstrap' ) ); ?>
-		<div class="assistive-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'binarybootstrap' ); ?>"><?php _e( 'Skip to content', 'binarybootstrap' ); ?></a></div>
-	</header><!-- #masthead -->
 
-	<div id="main" class="row site-main">
+		<div id="main" class="row site-main">
