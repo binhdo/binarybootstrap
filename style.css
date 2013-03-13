@@ -13,16 +13,13 @@ Tags: responsive, bootstrap
 
 /* =Reset
 -------------------------------------------------------------- */
-.clear {
-	clear: both;
-}
 
 /* =Global
 ----------------------------------------------- */
 body.top-nav-fixed {
 	padding-top: 50px;
 }
-.admin-bar .navbar-fixed-top {
+body.admin-bar > nav.navbar-fixed-top {
 	padding-top: 28px;
 }
 
@@ -38,6 +35,9 @@ body.top-nav-fixed {
 }
 
 /* Clearing */
+.clear {
+	clear: both;
+}
 
 /* =Menu
 ----------------------------------------------- */
@@ -47,44 +47,29 @@ body.top-nav-fixed {
 /* =Content
 ----------------------------------------------- */
 .sticky {
-	
+
 }
 
 .hentry {
-	margin: 0 0 1.5em;
-}
-
-.byline {
-	display: none;
-}
-
-.single .byline,.group-blog .byline {
-	display: inline;
 }
 
 .entry-content,.entry-summary {
-	margin: 1.5em 0 0;
-}
-
-.page-links {
-	clear: both;
-	margin: 0 0 1.5em;
 }
 
 /* =Asides
 ----------------------------------------------- */
-.blog .format-aside .entry-title,.archive .format-aside .entry-title {
+.blog .format-aside .entry-title, .archive .format-aside .entry-title {
 	display: none;
 }
 
 /* =Media
 ----------------------------------------------- */
 /* Make sure embeds and iframes fit their containers */
-embed,iframe,object {
+embed, iframe, object {
 	max-width: 100%;
 }
 
-.wp-caption,.gallery>.gallery-item {
+.wp-caption,.gallery > .gallery-item {
 	margin-bottom: 10px;
 }
 
