@@ -35,6 +35,14 @@ module.exports = function(grunt) {
 				files: {
 					'css/bootstrap.min.css': ['css/less/bootstrap.less']
 				}
+			},
+			dev: {
+				options: {
+					compile: true,
+				},
+				files: {
+					'css/bootstrap.css': ['css/less/bootstrap.less']
+				}
 			}
 		}
 	});
