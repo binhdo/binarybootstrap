@@ -36,7 +36,7 @@
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-above" class="navigation-comment" role="navigation">
-			<h1 class="assistive-text"><?php _e( 'Comment navigation', 'binarybootstrap' ); ?></h1>
+			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'binarybootstrap' ); ?></h1>
 			<div class="previous"><?php previous_comments_link( __( '&larr; Older Comments', 'binarybootstrap' ) ); ?></div>
 			<div class="next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'binarybootstrap' ) ); ?></div>
 		</nav><!-- #comment-nav-before -->
@@ -56,7 +56,7 @@
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-below" class="navigation-comment" role="navigation">
-			<h1 class="assistive-text"><?php _e( 'Comment navigation', 'binarybootstrap' ); ?></h1>
+			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'binarybootstrap' ); ?></h1>
 			<div class="previous"><?php previous_comments_link( __( '&larr; Older Comments', 'binarybootstrap' ) ); ?></div>
 			<div class="next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'binarybootstrap' ) ); ?></div>
 		</nav><!-- #comment-nav-below -->
