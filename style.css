@@ -28,6 +28,23 @@ body.admin-bar > nav.navbar-fixed-top {
 
 /* Links */
 
+/* Alignment */
+.alignleft {
+	display: inline;
+	float: left;
+	margin-right: 10px;
+}
+.alignright {
+	display: inline;
+	float: right;
+	margin-left: 10px;
+}
+.aligncenter {
+	clear: both;
+	display: block;
+	margin: 0 auto;
+}
+
 /* Text meant only for screen readers */
 .screen-reader-text {
 	clip: rect(1px, 1px, 1px, 1px); /* IE6, IE7 */
