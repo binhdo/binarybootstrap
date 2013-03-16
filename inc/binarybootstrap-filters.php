@@ -288,9 +288,28 @@ function binarybootstrap_wp_title($title, $sep) {
 
 add_filter( 'wp_title', 'binarybootstrap_wp_title', 10, 2 );
 
+/**
+ * Add Bootstrap classes to Gravatar
+ * 
+ * @param type $avatar
+ * @return type
+ */
 function binarybootstrap_get_avatar($avatar) {
 	$avatar = str_replace( "class='avatar", "class='avatar pull-left media-object", $avatar );
 	return $avatar;
 }
 
 add_filter( 'get_avatar', 'binarybootstrap_get_avatar' );
+
+/**
+ * Wrap embedded media as suggested by Readability
+ *
+ * @link https://gist.github.com/965956
+ * @link http://www.readability.com/publishers/guidelines#publisher
+ */
+function binarybootstrap_embed_wrap($cache, $url, $attr = '', $post_ID = '') {
+	return '<div class="text-center entry-content-asset">' . $cache . '</div>';
+}
+
+add_filter( 'embed_oembed_html', 'binarybootstrap_embed_wrap', 10, 4 );
+add_filter( 'embed_googlevideo', 'binarybootstrap_embed_wrap', 10, 2 );
