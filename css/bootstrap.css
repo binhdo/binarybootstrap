@@ -263,6 +263,9 @@ table {
   h3 {
     page-break-after: avoid;
   }
+  .navbar-toggle {
+    display: none;
+  }
 }
 
 * {
@@ -285,11 +288,6 @@ html {
 }
 
 body {
-  margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  font-size: 1.4rem;
-  line-height: 1.5;
   color: #333333;
   background-color: #ffffff;
 }
@@ -301,6 +299,7 @@ select,
 textarea {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
+  font-size: 1.4rem;
   line-height: 20px;
 }
 
@@ -343,6 +342,7 @@ p {
 .lead {
   margin-bottom: 20px;
   font-size: 21px;
+  font-size: 2.1rem;
   font-weight: 200;
   line-height: 1.25;
 }
@@ -467,58 +467,58 @@ h6 {
 
 h1,
 .h1 {
-  font-size: 38.5px;
+  font-size: 38.5;
   font-size: 4rem;
 }
 
 h2,
 .h2 {
-  font-size: 31.5px;
+  font-size: 31.5;
   font-size: 3rem;
 }
 
 h3,
 .h3 {
-  font-size: 24.5px;
+  font-size: 24.5;
   font-size: 2.5rem;
 }
 
 h4,
 .h4 {
-  font-size: 17.5px;
+  font-size: 17.5;
   font-size: 2rem;
 }
 
 h5,
 .h5 {
-  font-size: 14px;
+  font-size: 14;
   font-size: 1.6rem;
 }
 
 h6,
 .h6 {
-  font-size: 11.9px;
+  font-size: 11.9;
   font-size: 1.2rem;
 }
 
 h1 small,
 .h1 small {
-  font-size: 24.5px;
+  font-size: 24.5;
 }
 
 h2 small,
 .h2 small {
-  font-size: 17.5px;
+  font-size: 17.5;
 }
 
 h3 small,
 .h3 small {
-  font-size: 14px;
+  font-size: 14;
 }
 
 h4 small,
 .h4 small {
-  font-size: 14px;
+  font-size: 14;
 }
 
 .page-header {
@@ -624,7 +624,7 @@ blockquote {
 
 blockquote p {
   margin-bottom: 0;
-  font-size: 17.5px;
+  font-size: 17.5;
   font-weight: 300;
   line-height: 1.25;
 }
@@ -678,7 +678,7 @@ code,
 pre {
   padding: 0 3px 2px;
   font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
-  font-size: 12px;
+  font-size: 12;
   color: #333333;
   border-radius: 4px;
 }
@@ -695,7 +695,7 @@ pre {
   display: block;
   padding: 9.5px;
   margin: 0 0 10px;
-  font-size: 13px;
+  font-size: 13;
   line-height: 20px;
   word-break: break-all;
   word-wrap: break-word;
@@ -1076,26 +1076,38 @@ table th[class^="span"] {
   float: none;
 }
 
+.table > tbody > tr > td.success,
+.table > tbody > tr > th.success,
 .table > tbody > tr.success > td {
   background-color: #dff0d8;
 }
 
+.table > tbody > tr > td.error,
+.table > tbody > tr > th.error,
 .table > tbody > tr.error > td {
   background-color: #f2dede;
 }
 
+.table > tbody > tr > td.warning,
+.table > tbody > tr > th.warning,
 .table > tbody > tr.warning > td {
   background-color: #fcf8e3;
 }
 
+.table-hover > tbody > tr > td.success:hover,
+.table-hover > tbody > tr > th.success:hover,
 .table-hover > tbody > tr.success:hover > td {
   background-color: #d0e9c6;
 }
 
+.table-hover > tbody > tr > td.error:hover,
+.table-hover > tbody > tr > th.error:hover,
 .table-hover > tbody > tr.error:hover > td {
   background-color: #ebcccc;
 }
 
+.table-hover > tbody > tr > td.warning:hover,
+.table-hover > tbody > tr > th.warning:hover,
 .table-hover > tbody > tr.warning:hover > td {
   background-color: #faf2cc;
 }
@@ -1115,7 +1127,7 @@ legend {
   width: 100%;
   padding: 0;
   margin-bottom: 20px;
-  font-size: 21px;
+  font-size: 21;
   line-height: 40px;
   color: #333333;
   border: 0;
@@ -1147,7 +1159,7 @@ input[type="color"] {
   display: inline-block;
   min-height: 34px;
   padding: 6px 9px;
-  font-size: 14px;
+  font-size: 14;
   line-height: 20px;
   color: #555555;
   vertical-align: middle;
@@ -1323,7 +1335,7 @@ input[type="search"].input-large,
 input[type="tel"].input-large,
 input[type="color"].input-large {
   padding: 11px 14px;
-  font-size: 17.5px;
+  font-size: 17.5;
   border-radius: 6px;
 }
 
@@ -1345,7 +1357,7 @@ input[type="tel"].input-small,
 input[type="color"].input-small {
   min-height: 26px;
   padding: 2px 10px;
-  font-size: 11.9px;
+  font-size: 11.9;
   border-radius: 3px;
 }
 
@@ -1532,7 +1544,7 @@ select:focus:invalid:focus {
 
 .input-group-addon {
   padding: 6px 8px;
-  font-size: 14px;
+  font-size: 14;
   font-weight: normal;
   line-height: 20px;
   text-align: center;
@@ -1546,12 +1558,12 @@ select:focus:invalid:focus {
 
 .input-group-addon.input-small {
   padding: 2px 10px;
-  font-size: 11.9px;
+  font-size: 11.9;
 }
 
 .input-group-addon.input-large {
   padding: 11px 14px;
-  font-size: 17.5px;
+  font-size: 17.5;
 }
 
 .input-group input:first-child,
@@ -1687,7 +1699,7 @@ select:focus:invalid:focus {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 14;
   font-weight: 500;
   line-height: 20px;
   text-align: center;
@@ -1721,6 +1733,7 @@ select:focus:invalid:focus {
 .btn.disabled,
 .btn[disabled],
 fieldset[disabled] .btn {
+  pointer-events: none;
   cursor: default;
   opacity: 0.65;
   filter: alpha(opacity=65);
@@ -1730,19 +1743,19 @@ fieldset[disabled] .btn {
 
 .btn-large {
   padding: 11px 14px;
-  font-size: 17.5px;
+  font-size: 17.5;
   border-radius: 6px;
 }
 
 .btn-small {
   padding: 2px 10px;
-  font-size: 11.9px;
+  font-size: 11.9;
   border-radius: 3px;
 }
 
 .btn-mini {
   padding: 0 6px;
-  font-size: 10.5px;
+  font-size: 10.5;
   border-radius: 3px;
 }
 
@@ -1771,7 +1784,8 @@ input[type="button"].btn-block {
 
 .btn:hover,
 .btn:focus,
-.btn:active {
+.btn:active,
+.btn.active {
   background-color: #9a9c9d;
   border-color: #8d9091;
 }
@@ -1784,7 +1798,10 @@ fieldset[disabled] .btn:hover,
 fieldset[disabled] .btn:focus,
 .btn.disabled:active,
 .btn[disabled]:active,
-fieldset[disabled] .btn:active {
+fieldset[disabled] .btn:active,
+.btn.disabled.active,
+.btn[disabled].active,
+fieldset[disabled] .btn.active {
   background-color: #a7a9aa;
   border-color: #a7a9aa;
 }
@@ -1796,7 +1813,8 @@ fieldset[disabled] .btn:active {
 
 .btn-primary:hover,
 .btn-primary:focus,
-.btn-primary:active {
+.btn-primary:active,
+.btn-primary.active {
   background-color: #357ebd;
   border-color: #3071a9;
 }
@@ -1809,7 +1827,10 @@ fieldset[disabled] .btn-primary:hover,
 fieldset[disabled] .btn-primary:focus,
 .btn-primary.disabled:active,
 .btn-primary[disabled]:active,
-fieldset[disabled] .btn-primary:active {
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
   background-color: #428bca;
   border-color: #428bca;
 }
@@ -1821,7 +1842,8 @@ fieldset[disabled] .btn-primary:active {
 
 .btn-warning:hover,
 .btn-warning:focus,
-.btn-warning:active {
+.btn-warning:active,
+.btn-warning.active {
   background-color: #eea236;
   border-color: #ec971f;
 }
@@ -1834,7 +1856,10 @@ fieldset[disabled] .btn-warning:hover,
 fieldset[disabled] .btn-warning:focus,
 .btn-warning.disabled:active,
 .btn-warning[disabled]:active,
-fieldset[disabled] .btn-warning:active {
+fieldset[disabled] .btn-warning:active,
+.btn-warning.disabled.active,
+.btn-warning[disabled].active,
+fieldset[disabled] .btn-warning.active {
   background-color: #f0ad4e;
   border-color: #f0ad4e;
 }
@@ -1846,7 +1871,8 @@ fieldset[disabled] .btn-warning:active {
 
 .btn-danger:hover,
 .btn-danger:focus,
-.btn-danger:active {
+.btn-danger:active,
+.btn-danger.active {
   background-color: #d43f3a;
   border-color: #c9302c;
 }
@@ -1859,7 +1885,10 @@ fieldset[disabled] .btn-danger:hover,
 fieldset[disabled] .btn-danger:focus,
 .btn-danger.disabled:active,
 .btn-danger[disabled]:active,
-fieldset[disabled] .btn-danger:active {
+fieldset[disabled] .btn-danger:active,
+.btn-danger.disabled.active,
+.btn-danger[disabled].active,
+fieldset[disabled] .btn-danger.active {
   background-color: #d9534f;
   border-color: #d9534f;
 }
@@ -1871,7 +1900,8 @@ fieldset[disabled] .btn-danger:active {
 
 .btn-success:hover,
 .btn-success:focus,
-.btn-success:active {
+.btn-success:active,
+.btn-success.active {
   background-color: #4cae4c;
   border-color: #449d44;
 }
@@ -1884,7 +1914,10 @@ fieldset[disabled] .btn-success:hover,
 fieldset[disabled] .btn-success:focus,
 .btn-success.disabled:active,
 .btn-success[disabled]:active,
-fieldset[disabled] .btn-success:active {
+fieldset[disabled] .btn-success:active,
+.btn-success.disabled.active,
+.btn-success[disabled].active,
+fieldset[disabled] .btn-success.active {
   background-color: #5cb85c;
   border-color: #5cb85c;
 }
@@ -1896,7 +1929,8 @@ fieldset[disabled] .btn-success:active {
 
 .btn-info:hover,
 .btn-info:focus,
-.btn-info:active {
+.btn-info:active,
+.btn-info.active {
   background-color: #46b8da;
   border-color: #31b0d5;
 }
@@ -1909,7 +1943,10 @@ fieldset[disabled] .btn-info:hover,
 fieldset[disabled] .btn-info:focus,
 .btn-info.disabled:active,
 .btn-info[disabled]:active,
-fieldset[disabled] .btn-info:active {
+fieldset[disabled] .btn-info:active,
+.btn-info.disabled.active,
+.btn-info[disabled].active,
+fieldset[disabled] .btn-info.active {
   background-color: #5bc0de;
   border-color: #5bc0de;
 }
@@ -3635,6 +3672,7 @@ button.close {
 .btn-group-vertical > .btn {
   display: block;
   float: none;
+  width: 100%;
   max-width: 100%;
 }
 
@@ -3669,6 +3707,11 @@ button.close {
   display: table-cell;
   float: none;
   width: 1%;
+}
+
+.btn-group[data-toggle="buttons-radio"] > .btn > input[type="radio"],
+.btn-group[data-toggle="buttons-checkbox"] > .btn > input[type="checkbox"] {
+  display: none;
 }
 
 .breadcrumb {
@@ -3754,7 +3797,7 @@ button.close {
 .pagination-large > li > a,
 .pagination-large > li > span {
   padding: 11px 14px;
-  font-size: 17.5px;
+  font-size: 17.5;
 }
 
 .pagination-large > li:first-child > a,
@@ -3788,13 +3831,13 @@ button.close {
 .pagination-small > li > a,
 .pagination-small > li > span {
   padding: 2px 10px;
-  font-size: 11.9px;
+  font-size: 11.9;
 }
 
 .pagination-mini > li > a,
 .pagination-mini > li > span {
   padding: 0 6px;
-  font-size: 10.5px;
+  font-size: 10.5;
 }
 
 .pager {
@@ -4231,6 +4274,12 @@ button.close {
   border-top-color: #f8e5be;
 }
 
+.alert > a,
+.alert > p > a {
+  font-weight: 500;
+  color: #a47e3c;
+}
+
 .close {
   position: relative;
   top: -2px;
@@ -4249,6 +4298,11 @@ button.close {
   border-top-color: #c9e2b3;
 }
 
+.alert-success > a,
+.alert-success > p > a {
+  color: #356635;
+}
+
 .alert-danger,
 .alert-error {
   color: #b94a48;
@@ -4261,6 +4315,13 @@ button.close {
   border-top-color: #e6c1c7;
 }
 
+.alert-danger > a,
+.alert-error > a,
+.alert-danger > p > a,
+.alert-error > p > a {
+  color: #953b39;
+}
+
 .alert-info {
   color: #3a87ad;
   background-color: #d9edf7;
@@ -4269,6 +4330,11 @@ button.close {
 
 .alert-info hr {
   border-top-color: #a6e1ec;
+}
+
+.alert-info > a,
+.alert-info > p > a {
+  color: #2d6987;
 }
 
 .alert-block {
