@@ -38,7 +38,7 @@ function binarybootstrap_secondary_class() {
  *
  * @return string
  */
-function binarybootstrap_footer_widgets_class() {
+function binarybootstrap_tertiary_class() {
 	$widgets = wp_get_sidebars_widgets();
 	$num_widgets = count( $widgets['sidebar-2'] );
 

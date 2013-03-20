@@ -109,7 +109,7 @@ function binarybootstrap_widgets_init() {
 		'name' => __( 'Footer Sidebar', 'binarybootstrap' ),
 		'id' => 'sidebar-2',
 		'description' => __( 'The Sidebar containing the footer widget area.', 'binarybootstrap' ),
-		'before_widget' => '<aside id="%1$s" class="' . binarybootstrap_footer_widgets_class() . ' widget %2$s">',
+		'before_widget' => '<aside id="%1$s" class="' . binarybootstrap_tertiary_class() . ' widget %2$s">',
 		'after_widget' => '</aside>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
