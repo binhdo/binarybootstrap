@@ -30,19 +30,21 @@ html {
 }
 
 body {
+  font-family: @font-family-base;
+  font-size: @font-size-base;
+  line-height: @line-height-base;
   color: @text-color;
-  background-color: @body-background;
+  background-color: @body-bg;
 }
 
 // Reset fonts for revelant elements
-body,
 input,
 button,
 select,
 textarea {
-  font-family: @font-family-base;
-  .font-size();
-  line-height: @line-height-base;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 
@@ -55,7 +57,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: @link-color-hover;
+  color: @link-hover-color;
   text-decoration: underline;
 }
 a:focus {
