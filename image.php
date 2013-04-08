@@ -43,7 +43,7 @@ get_header();
 					</div><!-- .entry-meta -->
 				</header><!-- .entry-header -->
 
-				<div class="entry-content">
+				<div class="clearfix entry-content">
 
 					<div class="text-center entry-attachment">
 						<figure class="attachment">

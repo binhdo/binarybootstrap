@@ -16,7 +16,7 @@ get_header(); ?>
 					<h1 class="entry-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'binarybootstrap' ); ?></h1>
 				</header><!-- .entry-header -->
 
-				<div class="entry-content">
+				<div class="clearfix entry-content">
 					<p><?php _e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'binarybootstrap' ); ?></p>
 
 					<?php get_search_form(); ?>

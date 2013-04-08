@@ -21,7 +21,7 @@
 		<?php the_excerpt(); ?>
 	</div><!-- .entry-summary -->
 	<?php else : ?>
-	<div class="entry-content">
+	<div class="clearfix entry-content">
 		<?php the_content( __( 'Read more <span class="meta-nav">&rarr;</span>', 'binarybootstrap' ) ); ?>
 		<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'binarybootstrap' ), 'after' => '</div>' ) ); ?>
 	</div><!-- .entry-content -->
