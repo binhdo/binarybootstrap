@@ -88,6 +88,11 @@ input[type="checkbox"] {
   width: auto; // Override of generic input selector
 }
 
+// Override content-box in Normalize (* isn't specific enough)
+input[type="search"] {
+  .box-sizing(border-box);
+}
+
 // Reset height since textareas have rows
 textarea {
   height: auto;
