@@ -16,9 +16,9 @@
  */
 function binarybootstrap_primary_class($has_sidebar = true) {
 	if ( $has_sidebar && is_active_sidebar( 'sidebar-1' ) ) {
-		$class = 'col-span-8';
+		$class = 'col col-lg-8';
 	} else {
-		$class = 'col-span-12';
+		$class = 'col col-lg-12';
 	}
 
 	return $class;
@@ -30,7 +30,7 @@ function binarybootstrap_primary_class($has_sidebar = true) {
  * @return string
  */
 function binarybootstrap_secondary_class() {
-	return 'col-span-4';
+	return 'col col-lg-4';
 }
 
 /**
@@ -44,7 +44,7 @@ function binarybootstrap_tertiary_class() {
 
 	$a = $num_widgets > 0 ? floor( 12 / $num_widgets ) : 1;
 
-	$class = $a < 3 ? 'col-span-3' : 'col-span-' . $a;
+	$class = $a < 3 ? 'col col-lg-3' : 'col col-lg-' . $a;
 
 	return $class;
 }
@@ -159,22 +159,22 @@ function binarybootstrap_nav_menu($location, $class, $brand_text = null, $brand_
 			'container' => false,
 			'depth' => 2,
 			'walker' => new BinaryBootstrap_Walker_Nav_Menu(),
-			'items_wrap' => '<ul id="%1$s" class="nav %2$s">%3$s</ul>'
+			'items_wrap' => '<ul id="%1$s" class="nav navbar-nav %2$s">%3$s</ul>'
 		);
 		if ( !$brand_url )
 			$brand_url = home_url( '/' );
 		?>
 		<nav class="<?php echo $class; ?>" role="navigation">
 			<div class="container">
-				<a class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
-				</a>
+				</button>
 				<?php if ( $brand_text ) : ?>
 					<a class="navbar-brand" href="<?php echo esc_url( $brand_url ); ?>"><?php echo esc_attr( $brand_text ); ?> </a>
 				<?php endif; ?>
-				<div class="nav-collapse collapse">
+				<div class="nav-collapse collapse navbar-responsive-collapse">
 					<?php wp_nav_menu( $args ); ?>
 				</div>
 			</div>

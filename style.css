@@ -112,6 +112,7 @@ embed, iframe, object {
 }
 
 .wp-caption, .gallery > .gallery-item, .entry-content-asset {
+    max-width: 100%;
 	margin-bottom: 10px;
 }
 

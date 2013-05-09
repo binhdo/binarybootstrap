@@ -23,7 +23,7 @@ legend {
   margin-bottom: @line-height-base;
   font-size: (@font-size-base * 1.5);
   line-height: (@line-height-base * 2);
-  color: @grayDark;
+  color: @gray-dark;
   border: 0;
   border-bottom: 1px solid #e5e5e5;
 }
@@ -54,10 +54,10 @@ input[type="url"],
 input[type="search"],
 input[type="tel"],
 input[type="color"] {
-  display: inline-block;
+  display: block;
   min-height: @input-height-base; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
   padding: 6px 9px;
-  // margin-bottom: (@line-height-base / 2);
+  margin-bottom: 10px;
   font-size: @font-size-base;
   line-height: @line-height-base;
   color: @gray;
@@ -66,7 +66,7 @@ input[type="color"] {
   border: 1px solid @input-border;
   border-radius: @input-border-radius;
   .box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
-  .transition(~"border linear .2s, box-shadow linear .2s");
+  .transition(~"border-color linear .2s, box-shadow linear .2s");
 }
 
 // Reset appearance properties for textual inputs and textarea
@@ -174,10 +174,12 @@ textarea {
   min-height: @line-height-base; // clear the floating input if there is no label text
   margin-bottom: (@line-height-base / 2);
   padding-left: 20px;
+  vertical-align: middle;
   label {
     display: inline;
     margin-bottom: 0;
     font-weight: normal;
+    cursor: pointer;
   }
 }
 
@@ -193,21 +195,24 @@ textarea {
   margin-top: ((@line-height-base / 4) * -1);
 }
 
+/*
 // Move the options list down to align with labels
 .controls > .radio:first-child,
 .controls > .checkbox:first-child {
   padding-top: 5px; // has to be padding because margin collaspes
 }
+*/
 
 // Radios and checkboxes on same line
 .radio-inline,
 .checkbox-inline {
   display: inline-block;
-  padding-top: 5px;
+//  padding-top: 5px;
   padding-left: 20px;
   margin-bottom: 0;
   vertical-align: middle;
   font-weight: normal;
+  cursor: pointer;
 }
 .radio-inline + .radio-inline,
 .checkbox-inline + .checkbox-inline {
@@ -383,14 +388,16 @@ select:focus:invalid {
   display: table;
 
   // Undo padding and float of grid classes
-  &[class*="span"] {
+  &.col {
     float: none;
-    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   input,
   select {
     width: 100%;
+    margin-bottom: 0;
   }
 }
 
@@ -400,7 +407,7 @@ select:focus:invalid {
 .input-group-btn,
 .input-group input {
   display: table-cell;
-  margin: 0;
+  /*margin: 0;*/
   border-radius: 0;
   &.input-small {
     border-radius: 0;
@@ -426,7 +433,7 @@ select:focus:invalid {
   line-height: @line-height-base;
   text-align: center;
   text-shadow: 0 1px 0 #fff;
-  background-color: @grayLighter;
+  background-color: @gray-lighter;
   border: 1px solid #ccc;
 
 	&.input-small {
@@ -511,10 +518,25 @@ select:focus:invalid {
 
 
 
+// Inline forms
+// --------------------------------------------------
+
+.form-inline {
+  input,
+  select,
+  textarea,
+  .radio,
+  .checkbox {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+}
+
+
 // Horizontal forms
 // --------------------------------------------------
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: @screen-tablet) {
 
   .form-horizontal {
 

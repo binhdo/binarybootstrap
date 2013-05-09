@@ -21,7 +21,6 @@ module.exports = function(grunt) {
 						'js/bootstrap-popover.js',
 						'js/bootstrap-scrollspy.js',
 						'js/bootstrap-tab.js',
-						'js/bootstrap-typeahead.js',
 						'js/bootstrap-affix.js']
 				}
 			}

@@ -32,13 +32,12 @@ class BinaryBootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
-		$class_names = $value = $li_attributes =  '';
+		$class_names = $value = '';
 
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
 
 		if ( $args->has_children && $depth < 1 ) {
 			$classes[] = 'dropdown';
-			$li_attributes .= 'data-dropdown="dropdown"';
 		}
 
 		$classes[] = 'menu-item-' . $item->ID;
@@ -50,7 +49,7 @@ class BinaryBootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
 		$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
 
-		$output .= $indent . '<li' . $id . $value . $class_names . $li_attributes . '>';
+		$output .= $indent . '<li' . $id . $value . $class_names . '>';
 
 		$atts = array();
 		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
