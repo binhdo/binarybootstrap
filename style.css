@@ -116,6 +116,23 @@ embed, iframe, object {
 	margin-bottom: 10px;
 }
 
+img[class*="wp-image"] {
+	padding: 4px;
+	line-height: 1.428;
+	background-color: #ffffff;
+	border: 1px solid #dddddd;
+	border-radius: 4px;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+
+}
+
+a > img[class*="wp-image"]:hover {
+	border-color: #428bca;
+}
+
 /* =Navigation
 ----------------------------------------------- */
 
