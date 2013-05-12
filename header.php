@@ -35,14 +35,14 @@
 		<?php if ( $site_title || $site_desc || has_nav_menu( 'primary' ) ) : ?>
 			<header id="masthead" class="site-header" role="banner">
 				<?php if ( $site_title || $site_desc ) : ?>
-					<hgroup>
+					<div class="site-branding">
 						<?php if ( $site_title ) : ?>
 							<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 						<?php endif; ?>
 						<?php if ( $site_desc ) : ?>
 							<h2 class="lead site-description"><?php bloginfo( 'description' ); ?></h2>
 						<?php endif; ?>
-					</hgroup>
+					</div>
 				<?php endif; ?>
 				<?php binarybootstrap_nav_menu( 'primary', 'navbar', __( 'Home', 'binarybootstrap' ) ); ?>
 				<?php if ( has_nav_menu( 'primary' ) ) : ?>
