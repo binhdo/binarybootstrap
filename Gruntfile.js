@@ -10,18 +10,18 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					'js/bootstrap.min.js': [
-						'js/bootstrap-transition.js',
-						'js/bootstrap-alert.js',
-						'js/bootstrap-button.js',
-						'js/bootstrap-carousel.js',
-						'js/bootstrap-collapse.js',
-						'js/bootstrap-dropdown.js',
-						'js/bootstrap-modal.js',
-						'js/bootstrap-tooltip.js',
-						'js/bootstrap-popover.js',
-						'js/bootstrap-scrollspy.js',
-						'js/bootstrap-tab.js',
-						'js/bootstrap-affix.js']
+						'js/transition.js',
+						'js/alert.js',
+						'js/button.js',
+						'js/carousel.js',
+						'js/collapse.js',
+						'js/dropdown.js',
+						'js/modal.js',
+						'js/tooltip.js',
+						'js/popover.js',
+						'js/scrollspy.js',
+						'js/tab.js',
+						'js/affix.js']
 				}
 			}
 		},
