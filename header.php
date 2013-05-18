@@ -33,9 +33,9 @@
 		$site_desc = get_theme_mod( 'display_site_description' );
 		?>
 		<?php if ( $site_title || $site_desc || has_nav_menu( 'primary' ) ) : ?>
-			<header id="masthead" class="site-header" role="banner">
+			<header id="masthead" class="row site-header" role="banner">
 				<?php if ( $site_title || $site_desc ) : ?>
-					<div class="site-branding">
+					<div class="col col-lg-12 site-branding">
 						<?php if ( $site_title ) : ?>
 							<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 						<?php endif; ?>
@@ -44,11 +44,11 @@
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>
-				<?php binarybootstrap_nav_menu( 'primary', 'navbar', __( 'Home', 'binarybootstrap' ) ); ?>
 				<?php if ( has_nav_menu( 'primary' ) ) : ?>
 					<div class="screen-reader-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'binarybootstrap' ); ?>"><?php _e( 'Skip to content', 'binarybootstrap' ); ?></a></div>
 				<?php endif; ?>
 			</header><!-- #masthead -->
+			<?php binarybootstrap_nav_menu( 'primary', 'navbar', __( 'Home', 'binarybootstrap' ) ); ?>
 		<?php endif; ?>
 
 		<div id="main" class="row site-main">
