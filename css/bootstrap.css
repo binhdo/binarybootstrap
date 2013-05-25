@@ -1317,6 +1317,12 @@ select[size] {
   height: auto;
 }
 
+select optgroup {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+}
+
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
@@ -1573,7 +1579,7 @@ select:focus:invalid:focus {
 }
 
 .input-group-addon {
-  padding: 6px 8px;
+  padding: 8px 12px;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.428571429;
@@ -1978,16 +1984,6 @@ input[type="button"].btn-block {
 .fade.in {
   opacity: 1;
 }
-
-/*.collapse {
-  position: relative;
-  height: 0;
-  overflow: hidden;
-  .transition(height .35s ease);
-  &.in {
-    height: auto;
-  }
-}*/
 
 .collapse {
   position: relative;
@@ -3456,8 +3452,8 @@ button.close {
 }
 
 .navbar-form {
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 7px;
+  margin-bottom: 7px;
 }
 
 .navbar-form input,
