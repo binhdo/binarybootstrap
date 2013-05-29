@@ -90,10 +90,10 @@ function binarybootstrap_comment_form($args = array(), $post_id = null) {
 	$defaults = array(
 		'fields' => apply_filters( 'comment_form_default_fields', $fields ),
 		'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" rows="6" aria-required="true"></textarea></p>',
-		'must_log_in' => '<div class="alert alert-error must-log-in">' . sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.' ), wp_login_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) ) ) . '</div>',
+		'must_log_in' => '<div class="alert alert-error fade in must-log-in">' . sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.' ), wp_login_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) ) ) . '</div>',
 		'logged_in_as' => '<div class="alert logged-in-as">' . sprintf( __( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out?</a>' ), get_edit_user_link(), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) ) ) . '</div>',
-		'comment_notes_before' => '<div class="alert alert-info comment-notes"><a class="close" data-dismiss="alert" href="#">&times;</a>' . __( 'Your email address will not be published.' ) . ( $req ? $required_text : '' ) . '</div>',
-		'comment_notes_after' => '<div class="alert alert-info form-allowed-tags"><a class="close" data-dismiss="alert" href="#">&times;</a>' . sprintf( __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s' ), ' <pre>' . allowed_tags() . '</pre>' ) . '</div>',
+		'comment_notes_before' => '<div class="alert alert-info fade in comment-notes"><a class="close" data-dismiss="alert" href="#">&times;</a>' . __( 'Your email address will not be published.' ) . ( $req ? $required_text : '' ) . '</div>',
+		'comment_notes_after' => '<div class="alert alert-info fade in form-allowed-tags"><a class="close" data-dismiss="alert" href="#">&times;</a>' . sprintf( __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s' ), ' <pre>' . allowed_tags() . '</pre>' ) . '</div>',
 		'id_form' => 'commentform',
 		'id_submit' => 'submit',
 		'title_reply' => __( 'Leave a Reply' ),
