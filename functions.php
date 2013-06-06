@@ -54,7 +54,6 @@ if ( !isset( $content_width ) )
  * @since Binary Bootstrap 1.0
  */
 function binarybootstrap_setup() {
-
 	/**
 	 * Make theme available for translation
 	 * Translations can be filed in the /languages/ directory
@@ -72,6 +71,14 @@ function binarybootstrap_setup() {
 	 * Enable support for Post Thumbnails
 	 */
 	add_theme_support( 'post-thumbnails' );
+	
+	// Switches default core markup for search form to output valid HTML5.
+	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
+
+	/**
+	 * Enable support for Post Formats
+	 */
+	add_theme_support( 'post-formats', array('aside', 'image', 'video', 'quote', 'link') );
 
 	/**
 	 * This theme uses wp_nav_menu() in two locations.
@@ -80,11 +87,6 @@ function binarybootstrap_setup() {
 		'top_nav' => __( 'Top Navbar', 'binarybootstrap' ),
 		'primary' => __( 'Primary Menu', 'binarybootstrap' ),
 	) );
-
-	/**
-	 * Enable support for Post Formats
-	 */
-	add_theme_support( 'post-formats', array('aside', 'image', 'video', 'quote', 'link') );
 }
 
 add_action( 'after_setup_theme', 'binarybootstrap_setup' );
