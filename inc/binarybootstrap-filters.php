@@ -136,7 +136,7 @@ function binarybootstrap_gallery_shortcode($output, $attr) {
 		$orientation = ( $image_meta['height'] > $image_meta['width'] ) ? 'portrait' : 'landscape';
 
 		$clear_class = (0 == $i++ % $columns) ? ' clear' : '';
-		$span = 'col col-lg-' . floor( 12 / $columns );
+		$span = 'col-lg-' . floor( 12 / $columns );
 
 		$output .= "<{$itemtag} class='{$span}{$clear_class} text-center gallery-item'>";
 		$output .= "

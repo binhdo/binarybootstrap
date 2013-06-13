@@ -16,9 +16,9 @@
  */
 function binarybootstrap_primary_class($has_sidebar = true) {
 	if ( $has_sidebar && is_active_sidebar( 'sidebar-1' ) ) {
-		$class = 'col col-lg-8';
+		$class = 'col-lg-8';
 	} else {
-		$class = 'col col-lg-12';
+		$class = 'col-lg-12';
 	}
 
 	return $class;
@@ -30,7 +30,7 @@ function binarybootstrap_primary_class($has_sidebar = true) {
  * @return string
  */
 function binarybootstrap_secondary_class() {
-	return 'col col-lg-4';
+	return 'col-lg-4';
 }
 
 /**
@@ -44,7 +44,7 @@ function binarybootstrap_tertiary_class() {
 
 	$a = $num_widgets > 0 ? floor( 12 / $num_widgets ) : 1;
 
-	$class = $a < 3 ? 'col col-lg-3' : 'col col-lg-' . $a;
+	$class = $a < 3 ? 'col-lg-3' : 'col-lg-' . $a;
 
 	return $class;
 }

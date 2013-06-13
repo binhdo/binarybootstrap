@@ -32,7 +32,7 @@
 		<?php if ( $site_title || $site_desc || has_nav_menu( 'primary' ) ) : ?>
 			<header id="masthead" class="row site-header" role="banner">
 				<?php if ( $site_title || $site_desc ) : ?>
-					<div class="col col-lg-12 site-branding">
+					<div class="col-lg-12 site-branding">
 						<?php if ( $site_title ) : ?>
 							<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 						<?php endif; ?>
