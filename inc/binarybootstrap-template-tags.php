@@ -191,7 +191,7 @@ function binarybootstrap_nav_menu($location, $class, $brand_text = null, $brand_
 function binarybootstrap_content_nav() {
 	global $wp_query, $wp_rewrite;
 
-	if ( !is_single() ) {
+	if ( ( is_home() || is_archive() || is_search() ) && $wp_query->max_num_pages > 1 ) {
 		$paged = ( get_query_var( 'paged' )) ? intval( get_query_var( 'paged' ) ) : 1;
 
 		$pagenum_link = html_entity_decode( get_pagenum_link() );
@@ -226,7 +226,7 @@ function binarybootstrap_content_nav() {
 
 			echo "<nav class=\"clearfix\">\n{$page_links}\n</nav>";
 		}
-	} else {
+	} elseif ( is_single() ) {
 		echo '<ul class="pager">';
 		previous_post_link( '<li class="previous nav-previous">%link</li>', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'binarybootstrap' ) . '</span> %title' );
 		next_post_link( '<li class="next nav-next">%link</ul>', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'binarybootstrap' ) . '</span>' );
@@ -289,4 +289,51 @@ function binarybootstrap_entry_date($echo = true) {
 		echo $date;
 
 	return $date;
+}
+
+/**
+ * Prints the attached image with a link to the next attached image.
+ */
+function binarybootstrap_the_attached_image() {
+	$post                = get_post();
+	$attachment_size     = apply_filters( 'binarybootstrap_attachment_size', array( 1170, 9999 ) );
+	$next_attachment_url = wp_get_attachment_url();
+
+	/**
+	 * Grab the IDs of all the image attachments in a gallery so we can get the URL
+	 * of the next adjacent image in a gallery, or the first image (if we're
+	 * looking at the last image in a gallery), or, in a gallery of one, just the
+	 * link to that image file.
+	 */
+	$attachments = array_values( get_children( array(
+		'post_parent'    => $post->post_parent,
+		'post_status'    => 'inherit',
+		'post_type'      => 'attachment',
+		'post_mime_type' => 'image',
+		'order'          => 'ASC',
+		'orderby'        => 'menu_order ID'
+	) ) );
+
+	// If there is more than 1 attachment in a gallery...
+	if ( count( $attachments ) > 1 ) {
+		foreach ( $attachments as $k => $attachment ) {
+			if ( $attachment->ID == $post->ID )
+				break;
+		}
+		$k++;
+
+		// get the URL of the next image attachment...
+		if ( isset( $attachments[ $k ] ) )
+			$next_attachment_url = get_attachment_link( $attachments[ $k ]->ID );
+
+		// or get the URL of the first image attachment.
+		else
+			$next_attachment_url = get_attachment_link( $attachments[0]->ID );
+	}
+
+	printf( '<a href="%1$s" title="%2$s" rel="attachment">%3$s</a>',
+		esc_url( $next_attachment_url ),
+		the_title_attribute( array( 'echo' => false ) ),
+		wp_get_attachment_image( $post->ID, $attachment_size )
+	);
 }
