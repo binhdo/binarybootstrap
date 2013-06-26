@@ -29,7 +29,7 @@
 
 	<footer class="help-block entry-meta">
 		<?php if ( comments_open() ) : ?>
-			<i class="glyphicon glyphicon-comment"></i>
+			<span class="glyphicon glyphicon-comment"></span >
 			<?php comments_popup_link( '<span class="leave-reply">' . __( 'Leave a comment', 'binarybootstrap' ) . '</span>', __( 'One comment so far', 'binarybootstrap' ), __( 'View all % comments', 'binarybootstrap' ) ); ?>
 		<?php endif; // comments_open() ?>
 	

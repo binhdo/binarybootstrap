@@ -20,7 +20,7 @@ get_header();
 
 					<div class="help-block entry-meta">
 						<?php
-							$published_text  = __( '<i class="glyphicon glyphicon-time"></i> <span class="attachment-meta"><time class="entry-date" datetime="%1$s">%2$s</time> in <a href="%3$s" title="Return to %4$s" rel="gallery">%5$s</a></span> ', 'binarybootstrap' );
+							$published_text  = __( '<span class="glyphicon glyphicon-time"></span > <span class="attachment-meta"><time class="entry-date" datetime="%1$s">%2$s</time> in <a href="%3$s" title="Return to %4$s" rel="gallery">%5$s</a></span> ', 'binarybootstrap' );
 							$post_title = get_the_title( $post->post_parent );
 							if ( empty( $post_title ) || 0 == $post->post_parent )
 								$published_text  = '<span class="attachment-meta"><time class="entry-date" datetime="%1$s">%2$s</time></span> ';
@@ -34,7 +34,7 @@ get_header();
 							);
 
 							$metadata = wp_get_attachment_metadata();
-							printf( '<i class="glyphicon glyphicon-picture"></i> <span class="attachment-meta full-size-link"><a href="%1$s" title="Link to full-size image">%2$s &times; %3$s</a></span>',
+							printf( '<span class="glyphicon glyphicon-picture"></span > <span class="attachment-meta full-size-link"><a href="%1$s" title="Link to full-size image">%2$s &times; %3$s</a></span>',
 								esc_url( wp_get_attachment_url() ),
 								$metadata['width'],
 								$metadata['height']
