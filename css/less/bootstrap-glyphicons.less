@@ -1,17 +1,18 @@
 //
-// Glyphicons
+// Glyphicons for Bootstrap
 // -----------------------------------------------------------------------------
 
 // About
 //
 // Glyphicons font-based icons require you to include all relevant font files,
-// found in the Bootstrap repo under /fonts/. Files are referenced relative to
-// the compiled CSS.
+// found in this project under the /fonts/ directory. Files are referenced relative
+// to the compiled CSS.
 //
 // Basic usage
 //
-// Since icons are fonts, they can be placed anywhere text is placed. To use,
-// create an inline element with the appropriate classes, like so:
+// Since icons are fonts, they can be placed anywhere text is placed and are
+// thus automatically sized to match the surrounding child. To use, create an
+// inline element with the appropriate classes, like so:
 //
 // <a href="#"><span class="glyphicon glyphicon-star"></span> Star</a>
 //
@@ -21,11 +22,11 @@
 // Import the fonts
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('@{glyphicons-font-path}/glyphiconshalflings-regular.eot');
-  src: url('@{glyphicons-font-path}/glyphiconshalflings-regular.eot?#iefix') format('embedded-opentype'),
-       url('@{glyphicons-font-path}/glyphiconshalflings-regular.woff') format('woff'),
-       url('@{glyphicons-font-path}/glyphiconshalflings-regular.ttf') format('truetype'),
-       url('@{glyphicons-font-path}/glyphiconshalflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('../fonts/glyphiconshalflings-regular.eot');
+  src: url('../fonts/glyphiconshalflings-regular.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/glyphiconshalflings-regular.woff') format('woff'),
+       url('../fonts/glyphiconshalflings-regular.ttf') format('truetype'),
+       url('../fonts/glyphiconshalflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
 // Catchall baseclass

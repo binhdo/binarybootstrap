@@ -50,7 +50,7 @@
 				 * define binarybootstrap_comment() and that will be used instead.
 				 * See binarybootstrap_comment() in inc/template-tags.php for more.
 				 */
-				wp_list_comments( array( 'walker' => new BinaryBootstrap_Walker_Comment() ) );
+				wp_list_comments( array( 'walker' => new BinaryBootstrap_Walker_Comment(), 'short_ping' => true ) );
 			?>
 		</ol><!-- .comment-list -->
 
