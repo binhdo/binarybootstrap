@@ -42,7 +42,7 @@
 		</nav><!-- #comment-nav-before -->
 		<?php endif; // check for comment navigation ?>
 
-		<ol class="media-list comment-list">
+		<ol class="comment-list media-list list-unstyled">
 			<?php
 				/* Loop through and list the comments. Tell wp_list_comments()
 				 * to use binarybootstrap_comment() to format the comments.
