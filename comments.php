@@ -35,14 +35,14 @@
 		</h2>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-		<nav id="comment-nav-above" class="navigation-comment" role="navigation">
-			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'binarybootstrap' ); ?></h1>
-			<div class="previous"><?php previous_comments_link( __( '&larr; Older Comments', 'binarybootstrap' ) ); ?></div>
-			<div class="next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'binarybootstrap' ) ); ?></div>
-		</nav><!-- #comment-nav-before -->
+		<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'binarybootstrap' ); ?></h1>
+		<ul id="comment-nav-above pager" class="navigation-comment" role="navigation">
+			<li class="previous"><?php previous_comments_link( __( '&larr; Older Comments', 'binarybootstrap' ) ); ?></li>
+			<li class="next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'binarybootstrap' ) ); ?></li>
+		</ul><!-- #comment-nav-before -->
 		<?php endif; // check for comment navigation ?>
 
-		<ol class="comment-list media-list list-unstyled">
+		<ol class="comment-list media-list">
 			<?php
 				/* Loop through and list the comments. Tell wp_list_comments()
 				 * to use binarybootstrap_comment() to format the comments.

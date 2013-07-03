@@ -71,7 +71,7 @@
 // CSS image replacement
 // Source: https://github.com/h5bp/html5-boilerplate/commit/aa0396eae757
 .hide-text() {
-  font: 0/0 a;
+  font: ~"0/0" a;
   color: transparent;
   text-shadow: none;
   background-color: transparent;
@@ -411,7 +411,12 @@
   td& { display: table-cell !important; }
 }
 
-
+.responsive-invisibility() {
+  display: none !important;
+  tr& { display: none !important; }
+  th&,
+  td& { display: none !important; }
+}
 
 // Grid System
 // -----------
@@ -481,6 +486,7 @@
 // Generate form validation states
 .form-field-validation(@text-color: #555, @border-color: #ccc, @background-color: #f5f5f5) {
   // Color the label text
+  .help-block,
   .control-label {
     color: @text-color;
   }

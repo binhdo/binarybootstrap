@@ -224,12 +224,12 @@ function binarybootstrap_content_nav() {
 			$page_links .= join( "</li>\n\t<li>", $links );
 			$page_links .= "</li>\n</ul>\n";
 
-			echo "<nav class=\"clearfix\">\n{$page_links}\n</nav>";
+			echo $page_links;
 		}
 	} elseif ( is_single() ) {
 		echo '<ul class="pager">';
-		previous_post_link( '<li class="previous nav-previous">%link</li>', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'binarybootstrap' ) . '</span> %title' );
-		next_post_link( '<li class="next nav-next">%link</ul>', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'binarybootstrap' ) . '</span>' );
+		previous_post_link( '<li class="previous">%link</li>', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'binarybootstrap' ) . '</span> %title' );
+		next_post_link( '<li class="next">%link</ul>', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'binarybootstrap' ) . '</span>' );
 		echo '</ul>';
 	}
 }
