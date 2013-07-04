@@ -12,10 +12,10 @@
 ?>
 
 		</div><!-- #main -->
-		<footer id="colophon" class="site-footer" role="contentinfo">
+		<footer id="colophon" class="site-footer row" role="contentinfo">
 			<?php get_sidebar( 'main' ); ?>
 
-			<div class="site-info">
+			<div class="site-info <?php echo binarybootstrap_full_width_class(); ?>">
 				<?php do_action( 'binarybootstrap_credits' ); ?>
 				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'binarybootstrap' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'binarybootstrap' ); ?>"><?php printf( __( 'Proudly powered by %s', 'binarybootstrap' ), 'WordPress' ); ?></a>
 			</div><!-- .site-info -->
