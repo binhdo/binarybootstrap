@@ -109,4 +109,17 @@ function binarybootstrap_body_class( $classes ) {
 }
 add_filter( 'body_class', 'binarybootstrap_body_class' );
 
+/**
+ * Add Bootstrap classes to Gravatar
+ * 
+ * @param type $avatar
+ * @return type
+ */
+function binarybootstrap_get_avatar($avatar) {
+	$avatar = str_replace( "class='avatar", "class='avatar pull-left media-object", $avatar );
+	return $avatar;
+}
+
+add_filter( 'get_avatar', 'binarybootstrap_get_avatar' );
+
 ?>

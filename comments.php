@@ -27,12 +27,13 @@ if ( post_password_required() )
 			?>
 		</h2>
 
-		<ol class="comment-list">
+		<ol class="comment-list media-list">
 			<?php
 				wp_list_comments( array(
-					'style'       => 'ol',
+					'walker'	  => new BinaryBootstrap_Walker_Comment(),
+					'style'       => 'ul',
 					'short_ping'  => true,
-					'avatar_size' => 74,
+					'avatar_size' => 64,
 				) );
 			?>
 		</ol><!-- .comment-list -->
