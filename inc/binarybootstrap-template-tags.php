@@ -161,17 +161,17 @@ function binarybootstrap_paging_nav() {
 	?>
 	<nav class="navigation paging-navigation" role="navigation">
 		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'binarybootstrap' ); ?></h1>
-		<div class="nav-links">
+		<ul class="nav-links pager">
 
 			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'binarybootstrap' ) ); ?></div>
+			<li class="nav-previous previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'binarybootstrap' ) ); ?></li>
 			<?php endif; ?>
 
 			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'binarybootstrap' ) ); ?></div>
+			<li class="nav-next next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'binarybootstrap' ) ); ?></li>
 			<?php endif; ?>
 
-		</div><!-- .nav-links -->
+		</ul><!-- .nav-links -->
 	</nav><!-- .navigation -->
 	<?php
 }
@@ -197,12 +197,12 @@ function binarybootstrap_post_nav() {
 	?>
 	<nav class="navigation post-navigation" role="navigation">
 		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'binarybootstrap' ); ?></h1>
-		<div class="nav-links">
+		<ul class="nav-links pager">
 
-			<?php previous_post_link( '%link', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'binarybootstrap' ) ); ?>
-			<?php next_post_link( '%link', _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link', 'binarybootstrap' ) ); ?>
+			<li class="previous"><?php previous_post_link( '%link', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'binarybootstrap' ) ); ?></li>
+			<li class="next"><?php next_post_link( '%link', _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link', 'binarybootstrap' ) ); ?></li>
 
-		</div><!-- .nav-links -->
+		</ul><!-- .nav-links -->
 	</nav><!-- .navigation -->
 	<?php
 }
@@ -220,7 +220,7 @@ if ( ! function_exists( 'binarybootstrap_entry_meta' ) ) :
  */
 function binarybootstrap_entry_meta() {
 	if ( is_sticky() && is_home() && ! is_paged() )
-		echo '<span class="featured-post">' . __( 'Sticky', 'binarybootstrap' ) . '</span>';
+		echo '<span class="glyphicon glyphicon-fire"></span><span class="featured-post">' . __( 'Sticky', 'binarybootstrap' ) . '</span>';
 
 	if ( ! has_post_format( 'link' ) && 'post' == get_post_type() )
 		binarybootstrap_entry_date();
@@ -228,18 +228,18 @@ function binarybootstrap_entry_meta() {
 	// Translators: used between list items, there is a space after the comma.
 	$categories_list = get_the_category_list( __( ', ', 'binarybootstrap' ) );
 	if ( $categories_list ) {
-		echo '<span class="categories-links">' . $categories_list . '</span>';
+		echo '<span class="glyphicon glyphicon-paperclip"></span><span class="categories-links">' . $categories_list . '</span>';
 	}
 
 	// Translators: used between list items, there is a space after the comma.
 	$tag_list = get_the_tag_list( '', __( ', ', 'binarybootstrap' ) );
 	if ( $tag_list ) {
-		echo '<span class="tags-links">' . $tag_list . '</span>';
+		echo '<span class="glyphicon glyphicon-tags"></span><span class="tags-links">' . $tag_list . '</span>';
 	}
 
 	// Post author
 	if ( 'post' == get_post_type() ) {
-		printf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>',
+		printf( '<span class="glyphicon glyphicon-user"></span><span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>',
 			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 			esc_attr( sprintf( __( 'View all posts by %s', 'binarybootstrap' ), get_the_author() ) ),
 			get_the_author()
@@ -262,7 +262,7 @@ if ( ! function_exists( 'binarybootstrap_entry_date' ) ) :
 function binarybootstrap_entry_date( $echo = true ) {
 	$format_prefix = ( has_post_format( 'chat' ) || has_post_format( 'status' ) ) ? _x( '%1$s on %2$s', '1: post format name. 2: date', 'binarybootstrap' ): '%2$s';
 
-	$date = sprintf( '<span class="date"><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a></span>',
+	$date = sprintf( '<span class="glyphicon glyphicon-calendar"></span><span class="date"><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a></span>',
 		esc_url( get_permalink() ),
 		esc_attr( sprintf( __( 'Permalink to %s', 'binarybootstrap' ), the_title_attribute( 'echo=0' ) ) ),
 		esc_attr( get_the_date( 'c' ) ),
@@ -286,7 +286,7 @@ if ( ! function_exists( 'binarybootstrap_the_attached_image' ) ) :
  */
 function binarybootstrap_the_attached_image() {
 	$post                = get_post();
-	$attachment_size     = apply_filters( 'binarybootstrap_attachment_size', array( 724, 724 ) );
+	$attachment_size     = apply_filters( 'binarybootstrap_attachment_size', array( 1170, 9999 ) );
 	$next_attachment_url = wp_get_attachment_url();
 
 	/**

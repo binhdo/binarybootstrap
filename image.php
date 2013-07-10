@@ -19,10 +19,10 @@ get_header(); ?>
 
 					<div class="entry-meta">
 						<?php
-							$published_text = __( '<span class="attachment-meta">Published on <time class="entry-date" datetime="%1$s">%2$s</time> in <a href="%3$s" title="Return to %4$s" rel="gallery">%5$s</a></span>', 'binarybootstrap' );
+							$published_text = __( '<span class="glyphicon glyphicon-calendar"></span><span class="attachment-meta"><time class="entry-date" datetime="%1$s">%2$s</time> <span class="glyphicon glyphicon-link"></span> <a href="%3$s" title="Return to %4$s" rel="gallery">%5$s</a></span>', 'binarybootstrap' );
 							$post_title = get_the_title( $post->post_parent );
 							if ( empty( $post_title ) || 0 == $post->post_parent )
-								$published_text = '<span class="attachment-meta"><time class="entry-date" datetime="%1$s">%2$s</time></span>';
+								$published_text = '<span class="glyphicon glyphicon-calendar"><span class="attachment-meta"><time class="entry-date" datetime="%1$s">%2$s</time></span>';
 
 							printf( $published_text,
 								esc_attr( get_the_date( 'c' ) ),
@@ -33,7 +33,7 @@ get_header(); ?>
 							);
 
 							$metadata = wp_get_attachment_metadata();
-							printf( '<span class="attachment-meta full-size-link"><a href="%1$s" title="%2$s">%3$s (%4$s &times; %5$s)</a></span>',
+							printf( '<span class="glyphicon glyphicon-picture"></span><span class="attachment-meta full-size-link"><a href="%1$s" title="%2$s">%3$s (%4$s &times; %5$s)</a></span>',
 								esc_url( wp_get_attachment_url() ),
 								esc_attr__( 'Link to full-size image', 'binarybootstrap' ),
 								__( 'Full resolution', 'binarybootstrap' ),
@@ -47,10 +47,10 @@ get_header(); ?>
 				</header><!-- .entry-header -->
 
 				<div class="entry-content">
-					<nav id="image-navigation" class="navigation image-navigation" role="navigation">
-						<span class="nav-previous"><?php previous_image_link( false, __( '<span class="meta-nav">&larr;</span> Previous', 'binarybootstrap' ) ); ?></span>
-						<span class="nav-next"><?php next_image_link( false, __( 'Next <span class="meta-nav">&rarr;</span>', 'binarybootstrap' ) ); ?></span>
-					</nav><!-- #image-navigation -->
+					<ul id="image-navigation" class="navigation image-navigation pager" role="navigation">
+						<li class="nav-previous previous"><?php previous_image_link( false, __( '<span class="meta-nav">&larr;</span> Previous', 'binarybootstrap' ) ); ?></li>
+						<li class="nav-next next"><?php next_image_link( false, __( 'Next <span class="meta-nav">&rarr;</span>', 'binarybootstrap' ) ); ?></li>
+					</ul><!-- #image-navigation -->
 
 					<div class="entry-attachment">
 						<div class="attachment">

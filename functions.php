@@ -52,6 +52,11 @@ require_once locate_template('/inc/binarybootstrap-walker-comment.php');
 require_once locate_template('/inc/binarybootstrap-walker-menu.php');
 
 /**
+ * Bootstrap gallery shortcode
+ */
+require_once locate_template('/inc/binarybootstrap-gallery.php');
+
+/**
  * Binary Bootstrap only works in WordPress 3.6 or later.
  */
 if ( version_compare( $GLOBALS['wp_version'], '3.6-alpha', '<' ) )
@@ -116,6 +121,11 @@ function binarybootstrap_setup() {
 	 * "standard" posts and pages.
 	 */
 	add_theme_support( 'post-thumbnails' );
+	
+	/**
+	 * Use Bootstrap thumbnails and grid for [gallery]
+	 */
+	add_theme_support( 'bootstrap-gallery' );
 
 	// This theme uses its own gallery styles.
 	add_filter( 'use_default_gallery_style', '__return_false' );
@@ -240,7 +250,16 @@ add_action( 'template_redirect', 'binarybootstrap_content_width' );
 function binarybootstrap_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
+	
+	$wp_customize->add_setting( 'display_site_title', array( 'default' => 1 ) );
+	
+	$wp_customize->add_control( 'display_site_title', array(
+		'settings' => 'display_site_title',
+		'label' => __( 'Display site title', 'binarybootstrap' ),
+		'section' => 'title_tagline',
+		'type' => 'checkbox',
+	) );
+
 }
 add_action( 'customize_register', 'binarybootstrap_customize_register' );
 
@@ -254,3 +273,15 @@ function binarybootstrap_customize_preview_js() {
 	wp_enqueue_script( 'binarybootstrap-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20130226', true );
 }
 add_action( 'customize_preview_init', 'binarybootstrap_customize_preview_js' );
+
+/**
+ * Replace [gallery] shortcode
+ * 
+ */
+function binarybootstrap_gallery_support() {		
+	if ( current_theme_supports( 'bootstrap-gallery' ) ) {
+		remove_shortcode( 'gallery' );
+		add_shortcode( 'gallery', 'binarybootstrap_gallery_shortcode' );
+	}
+}
+add_action( 'template_redirect', 'binarybootstrap_gallery_support' );

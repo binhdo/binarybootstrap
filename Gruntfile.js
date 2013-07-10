@@ -42,11 +42,17 @@ module.exports = function(grunt) {
 			},
 			dev: {
 				options: {
-					compile: true,
+					compile: true
 				},
 				files: {
 					'css/binarybootstrap.css': ['less/binarybootstrap.less']
 				}
+			}
+		},
+		watch: {
+			less: {
+				files: ['less/*.less'],
+				tasks: ['recess']
 			}
 		}
 	});
@@ -55,6 +61,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-recess');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// Default task(s).
 	grunt.registerTask('default', ['clean', 'uglify', 'recess']);

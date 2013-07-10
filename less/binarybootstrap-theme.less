@@ -3,8 +3,10 @@
  *
  */
 
-/* =Global
------------------------------------------------ */
+/**
+ * Global
+ * ----------------------------------------------------------------------------
+ */
 
 body.top-nav-fixed {
 	padding-top: @navbar-height;
@@ -19,34 +21,89 @@ body.admin-bar > nav.navbar-fixed-top {
 /* Links */
 
 /* Alignment */
+.alignleft {
+	.pull-left();
+	margin-right: (@line-height-computed / 2);
+	margin-bottom: (@line-height-computed / 2);
+}
 
-/* Text meant only for screen readers */
+.aligncenter {
+	display: block !important;
+	margin: 0 auto (@line-height-computed / 2) auto;
+}
+
+.alignright {
+	.pull-right();
+	margin-left: (@line-height-computed / 2);
+	margin-bottom: (@line-height-computed / 2);
+}
+
+.alignnone {
+	margin-bottom: (@line-height-computed / 2);
+}
+
+/* Assistive text */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+}
 
 /* Clearing */
 
-/* =Content
------------------------------------------------ */
+/**
+ * Content
+ * ----------------------------------------------------------------------------
+ */
 
-/* =Asides
------------------------------------------------ */
+article.hentry {
+	.clearfix();
+}
 
-/* =Media
------------------------------------------------ */
+.entry-meta  {
+	.help-block();
+	> .featured-post,
+	> .date,
+	> .categories-links,
+	> .tags-links,
+	> .author,
+	> .attachment-meta {
+		padding: 0 5px;
+	}
+}
 
-.wp-caption, .attachment-post-thumbnail, .wp-post-image, img[class*='wp-image'] {
+.entry-header,
+.archive-header {
+	.page-header();
+}
+
+/**
+ * Media
+ * ----------------------------------------------------------------------------
+ */
+
+.wp-caption,
+.attachment-post-thumbnail,
+.wp-post-image,
+img[class*='wp-image'],
+img[class*='attachment'] {
 	.img-responsive();
 }
 
-/* =Navigation
------------------------------------------------ */
+.attachment .entry-attachment,
+.attachment p.attachment {
+	.text-center();
+	margin: 0 auto (@line-height-computed / 2) auto;
+}
 
-/* =Comments
------------------------------------------------ */
+/**
+ * Comments
+ * ----------------------------------------------------------------------------
+ */
 
-/* =Widgets
------------------------------------------------ */
-
-/* Search widget */
+/**
+ * Widgets
+ * ----------------------------------------------------------------------------
+ */
 
 .widget > ul {
 	.list-unstyled();
