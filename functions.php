@@ -29,7 +29,7 @@
  * @see binarybootstrap_content_width() for template-specific adjustments.
  */
 if ( ! isset( $content_width ) )
-	$content_width = 1170;
+	$content_width = 940;
 
 /**
  * Custom template tags for this theme.
@@ -233,7 +233,7 @@ function binarybootstrap_content_width() {
 	if ( is_active_sidebar( 'sidebar-2' ) )
 		$content_width = 870;
 	elseif ( is_attachment() )
-		$content_width = 1170;
+		$content_width = 940;
 	elseif ( has_post_format( 'audio' ) )
 		$content_width = 484;
 }

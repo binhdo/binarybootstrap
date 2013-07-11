@@ -5563,6 +5563,7 @@ article.hentry:after {
 .wp-caption,
 .attachment-post-thumbnail,
 .wp-post-image,
+.comment-content img,
 img[class*='wp-image'],
 img[class*='attachment'] {
   display: inline-block;
@@ -5573,6 +5574,15 @@ img[class*='attachment'] {
 .attachment .entry-attachment,
 .attachment p.attachment {
   margin: 0 auto 10px auto;
+  text-align: center;
+}
+
+.entry-content embed,
+.entry-content iframe {
+  max-width: 100%;
+}
+
+.entry-thumbnail {
   text-align: center;
 }
 

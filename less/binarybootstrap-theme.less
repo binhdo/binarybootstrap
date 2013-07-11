@@ -84,6 +84,7 @@ article.hentry {
 .wp-caption,
 .attachment-post-thumbnail,
 .wp-post-image,
+.comment-content img,
 img[class*='wp-image'],
 img[class*='attachment'] {
 	.img-responsive();
@@ -93,6 +94,15 @@ img[class*='attachment'] {
 .attachment p.attachment {
 	.text-center();
 	margin: 0 auto (@line-height-computed / 2) auto;
+}
+
+.entry-content embed,
+.entry-content iframe {
+    max-width: 100%;
+}
+
+.entry-thumbnail {
+    .text-center();
 }
 
 /**
