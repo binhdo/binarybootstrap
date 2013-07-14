@@ -61,7 +61,6 @@ class BinaryBootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 			$atts['data-toggle'] = 'dropdown';
 			$atts['data-target'] = '#';
 		}
-		//$attributes .= ($args->has_children && $depth < 1) ? ' class="dropdown-toggle" data-toggle="dropdown" data-target="#"' : '';
 
 		$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args );
 

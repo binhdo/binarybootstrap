@@ -29,6 +29,7 @@ body.admin-bar > nav.navbar-fixed-top {
 
 .aligncenter {
 	display: block !important;
+	clear: both;
 	margin: 0 auto (@line-height-computed / 2) auto;
 }
 
@@ -88,6 +89,18 @@ article.hentry {
 img[class*='wp-image'],
 img[class*='attachment'] {
 	.img-responsive();
+}
+
+img[class*='wp-image'],
+img[class*='attachment'] {
+	.thumbnail();
+}
+
+a > img[class*='wp-image']:hover,
+a > img[class*='wp-image']:focus,
+a > img[class*='attachment']:hover,
+a > img[class*='attachment']:focus {		
+	border-color: @link-color;
 }
 
 .attachment .entry-attachment,

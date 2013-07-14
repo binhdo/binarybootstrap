@@ -5486,6 +5486,7 @@ body.admin-bar > nav.navbar-fixed-top {
 .aligncenter {
   display: block !important;
   margin: 0 auto 10px auto;
+  clear: both;
 }
 
 .alignright {
@@ -5569,6 +5570,27 @@ img[class*='attachment'] {
   display: inline-block;
   height: auto;
   max-width: 100%;
+}
+
+img[class*='wp-image'],
+img[class*='attachment'] {
+  display: block;
+  padding: 4px;
+  line-height: 1.428571429;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+     -moz-transition: all 0.2s ease-in-out;
+       -o-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+}
+
+a > img[class*='wp-image']:hover,
+a > img[class*='wp-image']:focus,
+a > img[class*='attachment']:hover,
+a > img[class*='attachment']:focus {
+  border-color: #428bca;
 }
 
 .attachment .entry-attachment,
