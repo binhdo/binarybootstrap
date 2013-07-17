@@ -121,6 +121,7 @@ function binarybootstrap_setup() {
 	 * "standard" posts and pages.
 	 */
 	add_theme_support( 'post-thumbnails' );
+	set_post_thumbnail_size( 1170, 658, true );
 	
 	/**
 	 * Use Bootstrap thumbnails and grid for [gallery]
@@ -152,8 +153,6 @@ function binarybootstrap_fonts() {
 	$fonts_url = binarybootstrap_fonts_url();
 	if ( ! empty( $fonts_url ) )
 		wp_enqueue_style( 'binarybootstrap-fonts', esc_url_raw( $fonts_url ), array(), null );
-
-	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/fonts/genericons.css', array(), '2.09' );
 }
 add_action( 'wp_enqueue_scripts', 'binarybootstrap_fonts' );
 
@@ -180,13 +179,6 @@ function binarybootstrap_scripts_styles() {
 	 */
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
 		wp_enqueue_script( 'comment-reply' );
-
-	// Adds Masonry to handle vertical alignment of footer widgets.
-	// if ( is_active_sidebar( 'sidebar-1' ) )
-		// wp_enqueue_script( 'jquery-masonry' );
-
-	// Loads JavaScript file with functionality specific to Binary Bootstrap.
-	// wp_enqueue_script( 'binarybootstrap-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20130625a', true );
 }
 add_action( 'wp_enqueue_scripts', 'binarybootstrap_scripts_styles' );
 

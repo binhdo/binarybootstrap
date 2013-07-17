@@ -5,14 +5,14 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		clean: {
 			build: {
-				src: ['css/binarybootstrap*.css', 'js/bootstrap*.js']
+				src: ['css/binarybootstrap*.css', 'js/*.min.js']
 			}
 		},
 		uglify: {
-			options: {
-				banner: '/**\n* Bootstrap.js v3.0.0 by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n* <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n*/'
-			},
-			build: {
+			bootstrap: {
+				options: {
+					banner: '/**\n* Bootstrap.js v3.0.0 by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n* <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n*/'
+				},
 				files: {
 					'js/bootstrap.min.js': [
 						'js/transition.js',
@@ -27,6 +27,14 @@ module.exports = function(grunt) {
 						'js/scrollspy.js',
 						'js/tab.js',
 						'js/affix.js']
+				}
+			},
+			html5respond: {
+				files: {
+					'js/html5shiv-respond.min.js': [
+						'js/html5shiv.js',
+						'js/respond.src.js'
+					]
 				}
 			}
 		},
