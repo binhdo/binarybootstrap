@@ -42,8 +42,8 @@ function binarybootstrap_gallery_shortcode($attr) {
 		'itemtag'    => 'div',
 		'icontag'    => 'figure',
 		'captiontag' => 'figcaption',
-		'columns'    => 3,
-		'size'       => 'medium',
+		'columns'    => 4,
+		'size'       => 'thumbnail',
 		'include'    => '',
 		'exclude'    => ''
 	), $attr, 'gallery'));

@@ -31,13 +31,14 @@
 	<div id="page" class="hfeed site container">
 		<?php if ( get_theme_mod( 'display_site_title' ) ) : ?>
 		<header id="masthead" class="site-header row" role="banner">
-			<a class="home-link <?php echo binarybootstrap_full_width_class(); ?>" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-				<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
-				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-			</a>
+			<div class="site-branding <?php echo binarybootstrap_full_width_class(); ?>">
+				<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+					<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
+					<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+				</a>
+			</div>
 		</header><!-- #masthead -->
-		<?php endif;
-		
+		<?php endif;		
 		binarybootstrap_nav_menu( 'primary', 'navbar', __( 'Home', 'binarybootstrap' ) );
 		?>
 		<div id="main" class="site-main row">
