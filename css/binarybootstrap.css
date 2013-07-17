@@ -5508,6 +5508,10 @@ body.admin-bar > nav.navbar-fixed-top {
 
 /* Clearing */
 
+.clear {
+  clear: both;
+}
+
 /**
  * Content
  * ----------------------------------------------------------------------------
@@ -5587,8 +5591,11 @@ img[class*='attachment'] {
 }
 
 a > img[class*='wp-image']:hover,
+a > img[class*='attachment']:hover {
+  border-color: #428bca;
+}
+
 a > img[class*='wp-image']:focus,
-a > img[class*='attachment']:hover,
 a > img[class*='attachment']:focus {
   border-color: #428bca;
 }
@@ -5597,6 +5604,10 @@ a > img[class*='attachment']:focus {
 .attachment p.attachment {
   margin: 0 auto 10px auto;
   text-align: center;
+}
+
+.gallery-item {
+  margin-bottom: 10px;
 }
 
 .entry-content embed,

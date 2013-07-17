@@ -39,9 +39,9 @@ function binarybootstrap_gallery_shortcode($attr) {
 		'order'      => 'ASC',
 		'orderby'    => 'menu_order ID',
 		'id'         => $post ? $post->ID : 0,
-		'itemtag'    => 'dl',
-		'icontag'    => 'dt',
-		'captiontag' => 'dd',
+		'itemtag'    => 'div',
+		'icontag'    => 'figure',
+		'captiontag' => 'figcaption',
 		'columns'    => 3,
 		'size'       => 'thumbnail',
 		'include'    => '',
@@ -114,8 +114,10 @@ function binarybootstrap_gallery_shortcode($attr) {
 			/* see gallery_shortcode() in wp-includes/media.php */
 		</style>";
 	$size_class = sanitize_html_class( $size );
-	$gallery_div = "<div id='$selector' class='gallery galleryid-{$id} gallery-columns-{$columns} gallery-size-{$size_class}'>";
+	$gallery_div = "<div id='$selector' class='gallery galleryid-{$id} gallery-columns-{$columns} gallery-size-{$size_class} row'>\n";
 	$output = apply_filters( 'gallery_style', $gallery_style . "\n\t\t" . $gallery_div );
+	
+	$col_size = floor( 12 / $columns );
 
 	$i = 0;
 	foreach ( $attachments as $id => $attachment ) {
@@ -131,26 +133,25 @@ function binarybootstrap_gallery_shortcode($attr) {
 		$orientation = '';
 		if ( isset( $image_meta['height'], $image_meta['width'] ) )
 			$orientation = ( $image_meta['height'] > $image_meta['width'] ) ? 'portrait' : 'landscape';
+		
+		$clear_class = (0 == $i++ % $columns) ? ' clear' : '';
 
-		$output .= "<{$itemtag} class='gallery-item'>";
-		$output .= "
-			<{$icontag} class='gallery-icon {$orientation}'>
-				$image_output
-			</{$icontag}>";
+		$output .= "<{$itemtag} class='gallery-item col-lg-{$col_size}{$clear_class}'>\n";
+		$output .= "\t<{$icontag} class='gallery-icon {$orientation}'>\n\t\t";
+		$output .= $image_output . "\n";
+		
 		if ( $captiontag && trim($attachment->post_excerpt) ) {
-			$output .= "
-				<{$captiontag} class='wp-caption-text gallery-caption'>
-				" . wptexturize($attachment->post_excerpt) . "
-				</{$captiontag}>";
+			$output .= "\t\t<{$captiontag} class='wp-caption-text gallery-caption'>\n\t\t\t";
+			$output .= wptexturize($attachment->post_excerpt) . "\n";
+			$output .= "\t\t</{$captiontag}>\n";
 		}
-		$output .= "</{$itemtag}>";
-		if ( $columns > 0 && ++$i % $columns == 0 )
-			$output .= '<br style="clear: both" />';
+		$output .= "\t</{$icontag}>\n";
+		$output .= "</{$itemtag}>\n";
+		//if ( $columns > 0 && ++$i % $columns == 0 )
+		//	$output .= '<br style="clear: both" />';
 	}
 
-	$output .= "
-			<br style='clear: both;' />
-		</div>\n";
+	$output .= "</div>\n";
 
 	return $output;
 }
