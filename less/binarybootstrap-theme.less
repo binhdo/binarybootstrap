@@ -86,15 +86,6 @@ article.hentry {
  * ----------------------------------------------------------------------------
  */
 
-.wp-caption,
-.attachment-post-thumbnail,
-.wp-post-image,
-.comment-content img,
-img[class*='wp-image'],
-img[class*='attachment'] {
-	.img-responsive();
-}
-
 img[class*='wp-image'],
 img[class*='attachment'] {
 	.thumbnail();
@@ -110,7 +101,22 @@ a > img[class*='attachment'] {
 	}
 }
 
-.attachment .entry-attachment,
+.wp-caption,
+.attachment-post-thumbnail,
+.wp-post-image,
+.comment-content img,
+img[class*='wp-image'],
+img[class*='attachment'] {
+	.img-responsive();
+}
+
+
+.entry-content embed,
+.entry-content iframe {
+    max-width: 100%;
+}
+
+.entry-attachment .attachment,
 .attachment p.attachment {
 	.text-center();
 	margin: 0 auto (@line-height-computed / 2) auto;
@@ -120,12 +126,8 @@ a > img[class*='attachment'] {
 	margin-bottom: (@line-height-computed / 2);
 }
 
-.entry-content embed,
-.entry-content iframe {
-    max-width: 100%;
-}
-
-.entry-thumbnail {
+.entry-thumbnail,
+.gallery-icon {
     .text-center();
 }
 

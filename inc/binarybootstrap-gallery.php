@@ -43,7 +43,7 @@ function binarybootstrap_gallery_shortcode($attr) {
 		'icontag'    => 'figure',
 		'captiontag' => 'figcaption',
 		'columns'    => 3,
-		'size'       => 'thumbnail',
+		'size'       => 'medium',
 		'include'    => '',
 		'exclude'    => ''
 	), $attr, 'gallery'));
@@ -94,25 +94,7 @@ function binarybootstrap_gallery_shortcode($attr) {
 
 	$gallery_style = $gallery_div = '';
 	if ( apply_filters( 'use_default_gallery_style', true ) )
-		$gallery_style = "
-		<style type='text/css'>
-			#{$selector} {
-				margin: auto;
-			}
-			#{$selector} .gallery-item {
-				float: {$float};
-				margin-top: 10px;
-				text-align: center;
-				width: {$itemwidth}%;
-			}
-			#{$selector} img {
-				border: 2px solid #cfcfcf;
-			}
-			#{$selector} .gallery-caption {
-				margin-left: 0;
-			}
-			/* see gallery_shortcode() in wp-includes/media.php */
-		</style>";
+		$gallery_style = "";
 	$size_class = sanitize_html_class( $size );
 	$gallery_div = "<div id='$selector' class='gallery galleryid-{$id} gallery-columns-{$columns} gallery-size-{$size_class} row'>\n";
 	$output = apply_filters( 'gallery_style', $gallery_style . "\n\t\t" . $gallery_div );
@@ -137,18 +119,16 @@ function binarybootstrap_gallery_shortcode($attr) {
 		$clear_class = (0 == $i++ % $columns) ? ' clear' : '';
 
 		$output .= "<{$itemtag} class='gallery-item col-lg-{$col_size}{$clear_class}'>\n";
-		$output .= "\t<{$icontag} class='gallery-icon {$orientation}'>\n\t\t";
-		$output .= $image_output . "\n";
+		$output .= "\t<{$icontag} class='gallery-icon {$orientation}'>\n";
+		$output .= "\t\t" . $image_output . "\n";
 		
 		if ( $captiontag && trim($attachment->post_excerpt) ) {
-			$output .= "\t\t<{$captiontag} class='wp-caption-text gallery-caption'>\n\t\t\t";
-			$output .= wptexturize($attachment->post_excerpt) . "\n";
+			$output .= "\t\t<{$captiontag} class='wp-caption-text gallery-caption'>\n";
+			$output .= "\t\t\t" . wptexturize($attachment->post_excerpt) . "\n";
 			$output .= "\t\t</{$captiontag}>\n";
 		}
 		$output .= "\t</{$icontag}>\n";
 		$output .= "</{$itemtag}>\n";
-		//if ( $columns > 0 && ++$i % $columns == 0 )
-		//	$output .= '<br style="clear: both" />';
 	}
 
 	$output .= "</div>\n";

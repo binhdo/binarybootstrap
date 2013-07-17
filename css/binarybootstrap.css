@@ -5565,17 +5565,6 @@ article.hentry:after {
  * ----------------------------------------------------------------------------
  */
 
-.wp-caption,
-.attachment-post-thumbnail,
-.wp-post-image,
-.comment-content img,
-img[class*='wp-image'],
-img[class*='attachment'] {
-  display: inline-block;
-  height: auto;
-  max-width: 100%;
-}
-
 img[class*='wp-image'],
 img[class*='attachment'] {
   display: block;
@@ -5600,7 +5589,23 @@ a > img[class*='attachment']:focus {
   border-color: #428bca;
 }
 
-.attachment .entry-attachment,
+.wp-caption,
+.attachment-post-thumbnail,
+.wp-post-image,
+.comment-content img,
+img[class*='wp-image'],
+img[class*='attachment'] {
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+}
+
+.entry-content embed,
+.entry-content iframe {
+  max-width: 100%;
+}
+
+.entry-attachment .attachment,
 .attachment p.attachment {
   margin: 0 auto 10px auto;
   text-align: center;
@@ -5610,12 +5615,8 @@ a > img[class*='attachment']:focus {
   margin-bottom: 10px;
 }
 
-.entry-content embed,
-.entry-content iframe {
-  max-width: 100%;
-}
-
-.entry-thumbnail {
+.entry-thumbnail,
+.gallery-icon {
   text-align: center;
 }
 
