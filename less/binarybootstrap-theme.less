@@ -63,8 +63,10 @@ input[type="reset"] {
 
 /* Clearing */
 
-.clear {
-	clear: both;
+@media (min-width: @screen-desktop) {
+	.clear {
+		clear: both;
+	}
 }
 
 /**
@@ -74,6 +76,7 @@ input[type="reset"] {
 
 article.hentry {
 	.clearfix();
+	.hyphens();
 }
 
 .entry-meta  {
@@ -122,7 +125,6 @@ img[class*='attachment'] {
 	.img-responsive();
 }
 
-
 .entry-content embed,
 .entry-content iframe {
     max-width: 100%;
@@ -141,6 +143,11 @@ img[class*='attachment'] {
 .entry-thumbnail,
 .gallery-icon {
     .text-center();
+}
+
+.wp-caption-text,
+.gallery-caption {
+	font-size: 85%;
 }
 
 /**

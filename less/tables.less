@@ -20,11 +20,12 @@ th {
   margin-bottom: @line-height-computed;
   // Cells
   thead,
-  tbody {
+  tbody,
+  tfoot {
     > tr {
       > th,
       > td {
-        padding: 8px;
+        padding: @table-cell-padding;
         line-height: @line-height-base;
         vertical-align: top;
         border-top: 1px solid @table-border-color;
@@ -63,11 +64,12 @@ th {
 
 .table-condensed {
   thead,
-  tbody {
+  tbody,
+  tfoot {
     > tr {
       > th,
       > td {
-        padding: 4px 5px;
+        padding: @table-condensed-cell-padding;
       }
     }
   }
@@ -85,7 +87,8 @@ th {
   border-radius: @border-radius-base;
 
   > thead,
-  > tbody {
+  > tbody,
+  > tfoot {
     > tr {
       > th,
       > td {
@@ -200,7 +203,8 @@ table col[class^="col-"] {
   display: table-column;
 }
 table {
-  td, th {
+  td,
+  th {
     &[class^="col-"] {
       float: none;
       display: table-cell;

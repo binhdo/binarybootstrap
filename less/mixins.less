@@ -165,7 +165,7 @@
 
 // Backface visibility
 // Prevent browsers from flickering when using CSS 3D transforms.
-// Default value is `visible`, but can be changed to `hidden
+// Default value is `visible`, but can be changed to `hidden`
 // See git pull https://github.com/dannykeane/bootstrap.git backface-visibility for examples
 .backface-visibility(@visibility){
 	-webkit-backface-visibility: @visibility;
@@ -331,7 +331,7 @@
 // --------------------------------------------------
 
 // Short retina mixin for setting background-image and -size
-.retina-image(@file-1x, @file-2x, @width-1x, @height-1x) {
+.img-retina(@file-1x, @file-2x, @width-1x, @height-1x) {
   background-image: url("@{file-1x}");
 
   @media
@@ -359,6 +359,20 @@
   overflow: hidden;
   background-color: @top;
   border-bottom: 1px solid @bottom;
+}
+
+// Alerts
+// -------------------------
+.alert-variant(@background, @border, @text-color) {
+  background-color: @background;
+  border-color: @border;
+  color: @text-color;
+  hr {
+    border-top-color: darken(@border, 5%);
+  }
+  .alert-link {
+    color: darken(@text-color, 10%);
+  }
 }
 
 // Button psuedo states
@@ -392,6 +406,18 @@
   }
 }
 
+// Labels
+// -------------------------
+.label-variant(@color) {
+  background-color: @color;
+  &[href] {
+    &:hover,
+    &:focus {
+      background-color: darken(@color, 10%);
+    }
+  }
+}
+
 // Navbar vertical align
 // -------------------------
 // Vertically center elements in the navbar.
@@ -399,6 +425,15 @@
 .navbar-vertical-align(@element-height) {
   margin-top: ((@navbar-height - @element-height) / 2);
   margin-bottom: ((@navbar-height - @element-height) / 2);
+}
+
+// Progress bars
+// -------------------------
+.progress-bar-variant(@color) {
+  background-color: @color;
+  .progress-striped & {
+    #gradient > .striped(@color);
+  }
 }
 
 // Responsive utilities
