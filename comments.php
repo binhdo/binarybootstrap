@@ -44,8 +44,10 @@ if ( post_password_required() )
 		?>
 		<nav class="navigation comment-navigation" role="navigation">
 			<h1 class="screen-reader-text section-heading"><?php _e( 'Comment navigation', 'binarybootstrap' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'binarybootstrap' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'binarybootstrap' ) ); ?></div>
+			<ul class="pager">
+				<li class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'binarybootstrap' ) ); ?></li>
+				<li class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'binarybootstrap' ) ); ?></li>
+			</ul>
 		</nav><!-- .comment-navigation -->
 		<?php endif; // Check for comment navigation ?>
 

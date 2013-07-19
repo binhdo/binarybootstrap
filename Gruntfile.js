@@ -11,22 +11,22 @@ module.exports = function(grunt) {
 		uglify: {
 			bootstrap: {
 				options: {
-					banner: '/**\n* Bootstrap.js v3.0.0 by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n* <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n*/'
+					banner: '/**\n* Bootstrap.js v3.0.0 by @fat & @mdo\n* Copyright 2013 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n* <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>\n*/'
 				},
 				files: {
 					'js/bootstrap.min.js': [
-						'js/transition.js',
-						'js/alert.js',
-						'js/button.js',
-						'js/carousel.js',
-						'js/collapse.js',
-						'js/dropdown.js',
-						'js/modal.js',
-						'js/tooltip.js',
-						'js/popover.js',
-						'js/scrollspy.js',
-						'js/tab.js',
-						'js/affix.js']
+						'js/bootstrap/transition.js',
+						'js/bootstrap/alert.js',
+						'js/bootstrap/button.js',
+						'js/bootstrap/carousel.js',
+						'js/bootstrap/collapse.js',
+						'js/bootstrap/dropdown.js',
+						'js/bootstrap/modal.js',
+						'js/bootstrap/tooltip.js',
+						'js/bootstrap/popover.js',
+						'js/bootstrap/scrollspy.js',
+						'js/bootstrap/tab.js',
+						'js/bootstrap/affix.js']
 				}
 			},
 			html5respond: {

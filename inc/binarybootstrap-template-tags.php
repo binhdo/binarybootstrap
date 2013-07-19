@@ -113,25 +113,16 @@ function binarybootstrap_fonts_url() {
 	$fonts_url = '';
 
 	/* Translators: If there are characters in your language that are not
-	 * supported by Source Sans Pro, translate this to 'off'. Do not translate
+	 * supported by Noto Sans, translate this to 'off'. Do not translate
 	 * into your own language.
 	 */
-	$source_sans_pro = _x( 'on', 'Source Sans Pro font: on or off', 'binarybootstrap' );
+	$noto_sans = _x( 'on', 'Noto Sans font: on or off', 'binarybootstrap' );
 
-	/* Translators: If there are characters in your language that are not
-	 * supported by Bitter, translate this to 'off'. Do not translate into your
-	 * own language.
-	 */
-	$bitter = _x( 'on', 'Bitter font: on or off', 'binarybootstrap' );
-
-	if ( 'off' !== $source_sans_pro || 'off' !== $bitter ) {
+	if ( 'off' !== $noto_sans ) {
 		$font_families = array();
 
-		if ( 'off' !== $source_sans_pro )
-			$font_families[] = 'Source+Sans+Pro:300,400,700,300italic,400italic,700italic';
-
-		if ( 'off' !== $bitter )
-			$font_families[] = 'Bitter:400,700';
+		if ( 'off' !== $noto_sans )
+			$font_families[] = 'Noto+Sans:400,400italic,700,700italic';
 
 		$protocol = is_ssl() ? 'https' : 'http';
 		$query_args = array(
