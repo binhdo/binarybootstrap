@@ -25,11 +25,6 @@ input[type="reset"] {
 	.btn();
 }
 
-.form-submit > input[type="submit"] {
-	.btn-primary();
-	.btn-large();
-}
-
 /* Links */
 
 /* Alignment */
@@ -108,9 +103,7 @@ img[class*='attachment'] {
 
 a > img[class*='wp-image'],
 a > img[class*='attachment'] {
-	&:hover {
-		border-color: @link-color;
-	}
+	&:hover,
 	&:focus {
 		border-color: @link-color;
 	}
@@ -154,6 +147,11 @@ img[class*='attachment'] {
  * Comments
  * ----------------------------------------------------------------------------
  */
+
+.form-submit > input[type="submit"] {
+	.btn-primary();
+	.btn-large();
+}
 
 /**
  * Widgets

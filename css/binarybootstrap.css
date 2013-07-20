@@ -5548,42 +5548,6 @@ fieldset[disabled] input[type="reset"] {
           box-shadow: none;
 }
 
-.form-submit > input[type="submit"] {
-  padding: 14px 16px;
-  font-size: 18px;
-  color: #ffffff;
-  background-color: #428bca;
-  border-color: #428bca;
-  border-radius: 6px;
-}
-
-.form-submit > input[type="submit"]:hover,
-.form-submit > input[type="submit"]:focus,
-.form-submit > input[type="submit"]:active,
-.form-submit > input[type="submit"].active {
-  background-color: #357ebd;
-  border-color: #3071a9;
-}
-
-.form-submit > input[type="submit"].disabled,
-.form-submit > input[type="submit"][disabled],
-fieldset[disabled] .form-submit > input[type="submit"],
-.form-submit > input[type="submit"].disabled:hover,
-.form-submit > input[type="submit"][disabled]:hover,
-fieldset[disabled] .form-submit > input[type="submit"]:hover,
-.form-submit > input[type="submit"].disabled:focus,
-.form-submit > input[type="submit"][disabled]:focus,
-fieldset[disabled] .form-submit > input[type="submit"]:focus,
-.form-submit > input[type="submit"].disabled:active,
-.form-submit > input[type="submit"][disabled]:active,
-fieldset[disabled] .form-submit > input[type="submit"]:active,
-.form-submit > input[type="submit"].disabled.active,
-.form-submit > input[type="submit"][disabled].active,
-fieldset[disabled] .form-submit > input[type="submit"].active {
-  background-color: #428bca;
-  border-color: #428bca;
-}
-
 /* Links */
 
 /* Alignment */
@@ -5700,10 +5664,7 @@ img[class*='attachment'] {
 }
 
 a > img[class*='wp-image']:hover,
-a > img[class*='attachment']:hover {
-  border-color: #428bca;
-}
-
+a > img[class*='attachment']:hover,
 a > img[class*='wp-image']:focus,
 a > img[class*='attachment']:focus {
   border-color: #428bca;
@@ -5749,6 +5710,42 @@ img[class*='attachment'] {
  * Comments
  * ----------------------------------------------------------------------------
  */
+
+.form-submit > input[type="submit"] {
+  padding: 14px 16px;
+  font-size: 18px;
+  color: #ffffff;
+  background-color: #428bca;
+  border-color: #428bca;
+  border-radius: 6px;
+}
+
+.form-submit > input[type="submit"]:hover,
+.form-submit > input[type="submit"]:focus,
+.form-submit > input[type="submit"]:active,
+.form-submit > input[type="submit"].active {
+  background-color: #357ebd;
+  border-color: #3071a9;
+}
+
+.form-submit > input[type="submit"].disabled,
+.form-submit > input[type="submit"][disabled],
+fieldset[disabled] .form-submit > input[type="submit"],
+.form-submit > input[type="submit"].disabled:hover,
+.form-submit > input[type="submit"][disabled]:hover,
+fieldset[disabled] .form-submit > input[type="submit"]:hover,
+.form-submit > input[type="submit"].disabled:focus,
+.form-submit > input[type="submit"][disabled]:focus,
+fieldset[disabled] .form-submit > input[type="submit"]:focus,
+.form-submit > input[type="submit"].disabled:active,
+.form-submit > input[type="submit"][disabled]:active,
+fieldset[disabled] .form-submit > input[type="submit"]:active,
+.form-submit > input[type="submit"].disabled.active,
+.form-submit > input[type="submit"][disabled].active,
+fieldset[disabled] .form-submit > input[type="submit"].active {
+  background-color: #428bca;
+  border-color: #428bca;
+}
 
 /**
  * Widgets
