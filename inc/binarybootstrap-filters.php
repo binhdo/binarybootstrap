@@ -103,7 +103,24 @@ function binarybootstrap_get_avatar($avatar) {
 	$avatar = str_replace( "class='avatar", "class='avatar pull-left media-object", $avatar );
 	return $avatar;
 }
-
 add_filter( 'get_avatar', 'binarybootstrap_get_avatar' );
+
+function binarybootstrap_comment_form_defaults( $defaults ) {
+	$post_id = get_the_ID();
+
+	$user = wp_get_current_user();
+	$user_identity = $user->exists() ? $user->display_name : '';
+	
+	$req = get_option( 'require_name_email' );
+	$required_text = sprintf( ' ' . __('Required fields are marked %s'), '<span class="required">*</span>' );
+
+	$defaults['must_log_in'] = '<div class="must-log-in alert alert-error fade in"><button type="button" class="close" data-dismiss="alert">&times;</button>' . sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.' ), wp_login_url( apply_filters( 'the_permalink', get_permalink( get_the_ID() ) ) ) ) . '</div>';
+	$defaults['logged_in_as'] = '<div class="logged-in-as alert alert-info fade in"><button type="button" class="close" data-dismiss="alert">&times;</button>' . sprintf( __( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out?</a>' ), get_edit_user_link(), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) ) ) . '</div>';
+	$defaults['comment_notes_before'] = '<div class="comment-notes alert alert-info fade in"><button type="button" class="close" data-dismiss="alert">&times;</button>' . __( 'Your email address will not be published.' ) . ( $req ? $required_text : '' ) . '</div>';
+	$defaults['comment_notes_after']  = '<div class="form-allowed-tags alert alert-info alert-block fade in"><button type="button" class="close" data-dismiss="alert">&times;</button>' . sprintf( __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s' ), ' <pre>' . allowed_tags() . '</pre>' ) . '</div>';
+		
+	return $defaults;
+}
+add_filter( 'comment_form_defaults', 'binarybootstrap_comment_form_defaults' );
 
 ?>
