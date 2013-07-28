@@ -140,4 +140,3 @@ if (current_theme_supports( 'bootstrap-gallery' ) ) {
 	remove_shortcode( 'gallery' );
 	add_shortcode( 'gallery', 'binarybootstrap_gallery_shortcode' );
 }
-?>

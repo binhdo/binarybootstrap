@@ -341,5 +341,3 @@ function binarybootstrap_get_link_url() {
 
 	return ( $has_url ) ? $has_url : apply_filters( 'the_permalink', get_permalink() );
 }
-
-?>
