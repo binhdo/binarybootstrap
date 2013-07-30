@@ -155,7 +155,7 @@ function binarybootstrap_fonts() {
 		wp_enqueue_style( 'binarybootstrap-fonts', esc_url_raw( $fonts_url ), array(), null );
 }
 
-add_action( 'wp_enqueue_scripts', 'binarybootstrap_fonts' );
+//add_action( 'wp_enqueue_scripts', 'binarybootstrap_fonts' );
 
 /**
  * Enqueues scripts and styles for front end.
