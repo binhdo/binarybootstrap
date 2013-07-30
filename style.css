@@ -11,34 +11,4 @@ Tags: one-column, two-columns, right-sidebar, flexible-width, custom-menu, edito
 Text Domain: binarybootstrap
 */
 
-
-/**
- * Table of Contents:
- *
- * 1.0 - Reset
- * 2.0 - Repeatable Patterns
- * 3.0 - Basic Structure
- * 4.0 - Header
- *   4.1 - Site Header
- *   4.2 - Navigation
- * 5.0 - Content
- *   5.1 - Entry Header
- *   5.2 - Entry Meta
- *   5.3 - Entry Content
- *   5.4 - Galleries
- *   5.5 - Post Formats
- *   5.6 - Attachments
- *   5.7 - Post/Paging Navigation
- *   5.8 - Author Bio
- *   5.9 - Archives
- *   5.10 - Search Results/No posts
- *   5.11 - 404
- *   5.12 - Comments
- *   5.13 - Multisite
- * 6.0 - Sidebar
- *   6.1 - Widgets
- * 7.0 - Footer
- * 8.0 - Media Queries
- * 9.0 - Print
- * ----------------------------------------------------------------------------
- */
+/* There are no style definitions in here. Take a look at the /less or /css directories instead. */

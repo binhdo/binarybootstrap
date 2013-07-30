@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Binary Bootstrap functions and definitions.
  *
@@ -23,38 +24,37 @@
  * @subpackage Binary_Bootstrap
  * @since Binary Bootstrap 1.0
  */
-
 /**
  * Sets up the content width value based on the theme's design.
  * @see binarybootstrap_content_width() for template-specific adjustments.
  */
-if ( ! isset( $content_width ) )
+if ( !isset( $content_width ) )
 	$content_width = 940;
 
 /**
  * Custom template tags for this theme.
  */
-require_once locate_template('/inc/binarybootstrap-template-tags.php');
+require_once locate_template( '/inc/binarybootstrap-template-tags.php' );
 
 /**
  * Custom functions that act independently of the theme templates
  */
-require_once locate_template('/inc/binarybootstrap-filters.php');
+require_once locate_template( '/inc/binarybootstrap-filters.php' );
 
 /**
  * Custom Comment Walker
  */
-require_once locate_template('/inc/binarybootstrap-walker-comment.php');
+require_once locate_template( '/inc/binarybootstrap-walker-comment.php' );
 
 /**
  * Custom Menu Walker
  */
-require_once locate_template('/inc/binarybootstrap-walker-menu.php');
+require_once locate_template( '/inc/binarybootstrap-walker-menu.php' );
 
 /**
  * Bootstrap gallery shortcode
  */
-require_once locate_template('/inc/binarybootstrap-gallery.php');
+require_once locate_template( '/inc/binarybootstrap-gallery.php' );
 
 /**
  * Binary Bootstrap only works in WordPress 3.6 or later.
@@ -93,12 +93,11 @@ function binarybootstrap_setup() {
 	 * specifically font, colors, icons, and column width.
 	 */
 	// add_editor_style( array( 'css/editor-style.css', 'fonts/genericons.css' ) );
-
 	// Adds RSS feed links to <head> for posts and comments.
 	add_theme_support( 'automatic-feed-links' );
 
 	// Switches default core markup for search form to output valid HTML5.
-	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
+	add_theme_support( 'html5', array('search-form', 'comment-form', 'comment-list') );
 
 	/*
 	 * This theme supports all available post formats by default.
@@ -111,10 +110,10 @@ function binarybootstrap_setup() {
 	/**
 	 * This theme uses wp_nav_menu() in two locations.
 	 */
-	register_nav_menus(array(
-		'top_nav' => __('Top Navbar', 'binarybootstrap'),
-		'primary' => __('Primary Menu', 'binarybootstrap'),
-	));
+	register_nav_menus( array(
+		'top_nav' => __( 'Top Navbar', 'binarybootstrap' ),
+		'primary' => __( 'Primary Menu', 'binarybootstrap' ),
+	) );
 
 	/*
 	 * This theme uses a custom image size for featured images, displayed on
@@ -122,7 +121,7 @@ function binarybootstrap_setup() {
 	 */
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 1170, 658, true );
-	
+
 	/**
 	 * Use Bootstrap thumbnails and grid for [gallery]
 	 */
@@ -131,6 +130,7 @@ function binarybootstrap_setup() {
 	// This theme uses its own gallery styles.
 	add_filter( 'use_default_gallery_style', '__return_false' );
 }
+
 add_action( 'after_setup_theme', 'binarybootstrap_setup' );
 
 /**
@@ -151,9 +151,10 @@ add_action( 'after_setup_theme', 'binarybootstrap_setup' );
  */
 function binarybootstrap_fonts() {
 	$fonts_url = binarybootstrap_fonts_url();
-	if ( ! empty( $fonts_url ) )
+	if ( !empty( $fonts_url ) )
 		wp_enqueue_style( 'binarybootstrap-fonts', esc_url_raw( $fonts_url ), array(), null );
 }
+
 add_action( 'wp_enqueue_scripts', 'binarybootstrap_fonts' );
 
 /**
@@ -166,13 +167,10 @@ add_action( 'wp_enqueue_scripts', 'binarybootstrap_fonts' );
 function binarybootstrap_scripts_styles() {
 	/* Stylesheets */
 	wp_enqueue_style( 'binarybootstrap', get_template_directory_uri() . '/css/binarybootstrap.min.css', false, null );
-	
-	// Loads our main stylesheet.
-	// wp_enqueue_style( 'binarybootstrap-style', get_stylesheet_uri() );
-	
-	/* Javascripts */
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), null, true );
-	
+
+	/* Load the main stylesheet */
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null, true );
+
 	/*
 	 * Adds JavaScript to pages with the comment form to support sites with
 	 * threaded comments (when in use).
@@ -180,6 +178,7 @@ function binarybootstrap_scripts_styles() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
 		wp_enqueue_script( 'comment-reply' );
 }
+
 add_action( 'wp_enqueue_scripts', 'binarybootstrap_scripts_styles' );
 
 /**
@@ -191,25 +190,26 @@ add_action( 'wp_enqueue_scripts', 'binarybootstrap_scripts_styles' );
  */
 function binarybootstrap_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Main Widget Area', 'binarybootstrap' ),
-		'id'            => 'sidebar-1',
-		'description'   => __( 'Appears in the footer section of the site.', 'binarybootstrap' ),
+		'name' => __( 'Main Widget Area', 'binarybootstrap' ),
+		'id' => 'sidebar-1',
+		'description' => __( 'Appears in the footer section of the site.', 'binarybootstrap' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s ' . binarybootstrap_secondary_widget_class() . '">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
 	) );
 
 	register_sidebar( array(
-		'name'          => __( 'Secondary Widget Area', 'binarybootstrap' ),
-		'id'            => 'sidebar-2',
-		'description'   => __( 'Appears on posts and pages in the sidebar.', 'binarybootstrap' ),
+		'name' => __( 'Secondary Widget Area', 'binarybootstrap' ),
+		'id' => 'sidebar-2',
+		'description' => __( 'Appears on posts and pages in the sidebar.', 'binarybootstrap' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s ' . binarybootstrap_tertiary_widget_class() . '">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
 	) );
 }
+
 add_action( 'widgets_init', 'binarybootstrap_widgets_init' );
 
 /**
@@ -221,7 +221,7 @@ add_action( 'widgets_init', 'binarybootstrap_widgets_init' );
  */
 function binarybootstrap_content_width() {
 	global $content_width;
-	
+
 	if ( is_active_sidebar( 'sidebar-2' ) )
 		$content_width = 870;
 	elseif ( is_attachment() )
@@ -229,6 +229,7 @@ function binarybootstrap_content_width() {
 	elseif ( has_post_format( 'audio' ) )
 		$content_width = 484;
 }
+
 add_action( 'template_redirect', 'binarybootstrap_content_width' );
 
 /**
@@ -239,20 +240,20 @@ add_action( 'template_redirect', 'binarybootstrap_content_width' );
  * @param WP_Customize_Manager $wp_customize Customizer object.
  * @return void
  */
-function binarybootstrap_customize_register( $wp_customize ) {
-	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
-	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-	
-	$wp_customize->add_setting( 'display_site_title', array( 'default' => 1 ) );
-	
+function binarybootstrap_customize_register($wp_customize) {
+	$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
+	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+
+	$wp_customize->add_setting( 'display_site_title', array('default' => 1) );
+
 	$wp_customize->add_control( 'display_site_title', array(
 		'settings' => 'display_site_title',
 		'label' => __( 'Display site title', 'binarybootstrap' ),
 		'section' => 'title_tagline',
 		'type' => 'checkbox',
 	) );
-
 }
+
 add_action( 'customize_register', 'binarybootstrap_customize_register' );
 
 /**
@@ -262,18 +263,20 @@ add_action( 'customize_register', 'binarybootstrap_customize_register' );
  * @since Binary Bootstrap 1.0
  */
 function binarybootstrap_customize_preview_js() {
-	wp_enqueue_script( 'binarybootstrap-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20130226', true );
+	wp_enqueue_script( 'binarybootstrap-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array('customize-preview'), '20130226', true );
 }
+
 add_action( 'customize_preview_init', 'binarybootstrap_customize_preview_js' );
 
 /**
- * Replace [gallery] shortcode
+ * Replace the [gallery] shortcode
  * 
  */
-function binarybootstrap_gallery_support() {		
+function binarybootstrap_gallery_support() {
 	if ( current_theme_supports( 'bootstrap-gallery' ) ) {
 		remove_shortcode( 'gallery' );
 		add_shortcode( 'gallery', 'binarybootstrap_gallery_shortcode' );
 	}
 }
+
 add_action( 'template_redirect', 'binarybootstrap_gallery_support' );
