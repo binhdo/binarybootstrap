@@ -5471,8 +5471,8 @@ fieldset[disabled] input[type="reset"] {
 /* Assistive text */
 
 .screen-reader-text {
-  position: absolute !important;
-  clip: rect(1px, 1px, 1px, 1px);
+  display: none !important;
+  visibility: hidden !important;
 }
 
 /* Clearing */
