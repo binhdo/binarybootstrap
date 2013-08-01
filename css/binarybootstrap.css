@@ -5540,6 +5540,57 @@ article.hentry:after {
   border-bottom: 1px solid #eeeeee;
 }
 
+.blog .entry-content,
+.blog .entry-thumbnail {
+  display: none !important;
+}
+
+tr.blog .entry-content,
+tr.blog .entry-thumbnail {
+  display: none !important;
+}
+
+th.blog .entry-content,
+th.blog .entry-thumbnail,
+td.blog .entry-content,
+td.blog .entry-thumbnail {
+  display: none !important;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .blog .entry-content,
+  .blog .entry-thumbnail {
+    display: block !important;
+  }
+  tr.blog .entry-content,
+  tr.blog .entry-thumbnail {
+    display: table-row !important;
+  }
+  th.blog .entry-content,
+  th.blog .entry-thumbnail,
+  td.blog .entry-content,
+  td.blog .entry-thumbnail {
+    display: table-cell !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .blog .entry-content,
+  .blog .entry-thumbnail {
+    display: block !important;
+  }
+  tr.blog .entry-content,
+  tr.blog .entry-thumbnail {
+    display: table-row !important;
+  }
+  th.blog .entry-content,
+  th.blog .entry-thumbnail,
+  td.blog .entry-content,
+  td.blog .entry-thumbnail {
+    display: table-cell !important;
+  }
+}
+
 /**
  * Media
  * ----------------------------------------------------------------------------
