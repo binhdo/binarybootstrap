@@ -255,7 +255,10 @@ if ( !function_exists( 'binarybootstrap_entry_date' ) ) :
 	 * @return string The HTML-formatted post date.
 	 */
 	function binarybootstrap_entry_date($echo = true) {
-		$format_prefix = ( has_post_format( 'chat' ) || has_post_format( 'status' ) ) ? _x( '%1$s on %2$s', '1: post format name. 2: date', 'binarybootstrap' ) : '%2$s';
+		if ( has_post_format( array('chat', 'status') ) )
+			$format_prefix = _x( '%1$s on %2$s', '1: post format name. 2: date', 'binarybootstrap' );
+		else
+			$format_prefix = '%2$s';
 
 		$date = sprintf( '<span class="glyphicon glyphicon-calendar"></span><span class="date"><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a></span>', esc_url( get_permalink() ), esc_attr( sprintf( __( 'Permalink to %s', 'binarybootstrap' ), the_title_attribute( 'echo=0' ) ) ), esc_attr( get_the_date( 'c' ) ), esc_html( sprintf( $format_prefix, get_post_format_string( get_post_format() ), get_the_date() ) )
 		);
