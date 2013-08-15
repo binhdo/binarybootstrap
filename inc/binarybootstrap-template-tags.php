@@ -75,22 +75,26 @@ function binarybootstrap_nav_menu($location, $class, $brand_text = null, $brand_
 			'container' => false,
 			'depth' => 2,
 			'walker' => new BinaryBootstrap_Walker_Nav_Menu(),
-			'items_wrap' => '<ul id="%1$s" class="nav navbar-nav %2$s">%3$s</ul>'
+			'items_wrap' => '<ul id="%1$s" class="nav navbar-nav navbar-left %2$s">%3$s</ul>'
 		);
 		if ( !$brand_url )
 			$brand_url = home_url( '/' );
 		?>
 		<nav class="<?php echo $class; ?>" role="navigation">
 			<div class="container">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<?php if ( $brand_text ) : ?>
-					<a class="navbar-brand" href="<?php echo esc_url( $brand_url ); ?>"><?php echo esc_attr( $brand_text ); ?> </a>
-				<?php endif; ?>
-				<div class="nav-collapse collapse navbar-responsive-collapse">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-<?php echo $location; ?>-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<?php if ( $brand_text ) : ?>
+						<a class="navbar-brand" href="<?php echo esc_url( $brand_url ); ?>"><?php echo esc_attr( $brand_text ); ?> </a>
+					<?php endif; ?>
+				</div>
+				<div class="collapse navbar-collapse navbar-<?php echo $location; ?>-collapse">
 					<?php wp_nav_menu( $args ); ?>
 				</div>
 			</div>
