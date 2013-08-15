@@ -12,7 +12,7 @@
  * @return string
  */
 function binarybootstrap_full_width_class() {
-	return 'col-12 col-sm-12 col-lg-12';
+	return 'col-xs-12 col-sm-12 col-md-12 col-lg-12';
 }
 
 /**
@@ -23,9 +23,9 @@ function binarybootstrap_full_width_class() {
  */
 function binarybootstrap_primary_class($has_sidebar = true) {
 	if ( $has_sidebar && is_active_sidebar( 'sidebar-2' ) ) {
-		$class = 'col-12 col-sm-9 col-lg-9';
+		$class = 'col-xs-12 col-sm-9 col-md-9 col-lg-9';
 	} else {
-		$class = 'col-12 col-sm-12 col-lg-12';
+		$class = binarybootstrap_full_width_class();
 	}
 
 	return $class;
@@ -42,7 +42,7 @@ function binarybootstrap_secondary_widget_class() {
 
 	$a = $num_widgets > 0 ? floor( 12 / $num_widgets ) : 1;
 
-	$class = $a < 3 ? 'col-6 col-sm-4 col-lg-3' : 'col-6 col-sm-4 col-lg-' . $a;
+	$class = $a < 3 ? 'col-xs-6 col-sm-4 col-md-3 col-lg-3' : 'col-xs-6 col-sm-4 col-md-' . $a . ' col-lg-' . $a;
 
 	return $class;
 }
@@ -53,11 +53,11 @@ function binarybootstrap_secondary_widget_class() {
  * @return string
  */
 function binarybootstrap_tertiary_class() {
-	return 'col-12 col-sm-3 col-lg-3';
+	return 'col-xs-12 col-sm-3 col-md-3 col-lg-3';
 }
 
 function binarybootstrap_tertiary_widget_class() {
-	return 'col-6 col-sm-12 col-lg-12';
+	return 'col-xs-6 col-sm-12 col-md-12 col-lg-12';
 }
 
 /**
