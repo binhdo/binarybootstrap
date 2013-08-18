@@ -119,7 +119,7 @@ function binarybootstrap_gallery_shortcode($attr) {
 
 		$clear_class = (0 == $i++ % $columns) ? ' clear' : '';
 
-		$output .= "<{$itemtag} class='gallery-item col-6 col-sm-4 col-lg-{$col_size}{$clear_class}'>\n";
+		$output .= "<{$itemtag} class='gallery-item col-xs-6 col-sm-4 col-md-4 col-lg-{$col_size}{$clear_class}'>\n";
 		$output .= "\t<{$icontag} class='gallery-icon {$orientation}'>\n";
 		$output .= "\t\t" . $image_output . "\n";
 
