@@ -93,15 +93,7 @@ article.hentry {
 .blog {
 	.entry-content,
 	.entry-thumbnail {
-		.responsive-invisibility();
-		// Tablets & small desktops only
-		@media (min-width: @screen-tablet) and (max-width: @screen-tablet-max) {
-			.responsive-visibility();
-		}
-		// For desktops
-		@media (min-width: @screen-desktop) {
-			.responsive-visibility();
-		}
+		.hidden-xs();
 	}
 }
 

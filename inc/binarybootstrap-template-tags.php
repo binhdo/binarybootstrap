@@ -75,7 +75,7 @@ function binarybootstrap_nav_menu($location, $class, $brand_text = null, $brand_
 			'container' => false,
 			'depth' => 2,
 			'walker' => new BinaryBootstrap_Walker_Nav_Menu(),
-			'items_wrap' => '<ul id="%1$s" class="nav navbar-nav navbar-left %2$s">%3$s</ul>'
+			'items_wrap' => '<ul id="%1$s" class="nav navbar-nav %2$s">%3$s</ul>'
 		);
 		if ( !$brand_url )
 			$brand_url = home_url( '/' );

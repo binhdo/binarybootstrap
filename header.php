@@ -27,7 +27,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-	<?php binarybootstrap_nav_menu( 'top_nav', 'navbar navbar-fixed-top', __( 'Home', 'binarybootstrap' ) ); ?>
+	<?php binarybootstrap_nav_menu( 'top_nav', 'navbar navbar-default navbar-fixed-top', __( 'Home', 'binarybootstrap' ) ); ?>
 	<div id="page" class="hfeed site container">
 		<?php if ( get_theme_mod( 'display_site_title' ) ) : ?>
 		<header id="masthead" class="site-header row" role="banner">
@@ -37,6 +37,6 @@
 			</div>
 		</header><!-- #masthead -->
 		<?php endif;		
-		binarybootstrap_nav_menu( 'primary', 'navbar', __( 'Home', 'binarybootstrap' ) );
+		binarybootstrap_nav_menu( 'primary', 'navbar navbar-default', __( 'Home', 'binarybootstrap' ) );
 		?>
 		<div id="main" class="site-main row">
