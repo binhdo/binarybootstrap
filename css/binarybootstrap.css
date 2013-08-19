@@ -6954,10 +6954,20 @@ td.blog .entry-thumbnail {
  * ----------------------------------------------------------------------------
  */
 
+.wp-caption,
+.attachment-post-thumbnail,
+.wp-post-image,
+.comment-content img,
+img[class*='wp-image'],
+img[class*='attachment'] {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
 img[class*='wp-image'],
 img[class*='attachment'] {
   display: inline-block;
-  display: block;
   height: auto;
   max-width: 100%;
   padding: 4px;
@@ -6969,29 +6979,11 @@ img[class*='attachment'] {
           transition: all 0.2s ease-in-out;
 }
 
-img[class*='wp-image'] > img,
-img[class*='attachment'] > img {
-  display: block;
-  height: auto;
-  max-width: 100%;
-}
-
 a > img[class*='wp-image']:hover,
 a > img[class*='attachment']:hover,
 a > img[class*='wp-image']:focus,
 a > img[class*='attachment']:focus {
   border-color: #428bca;
-}
-
-.wp-caption,
-.attachment-post-thumbnail,
-.wp-post-image,
-.comment-content img,
-img[class*='wp-image'],
-img[class*='attachment'] {
-  display: block;
-  height: auto;
-  max-width: 100%;
 }
 
 .entry-content embed,

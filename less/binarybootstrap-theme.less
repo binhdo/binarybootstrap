@@ -102,9 +102,18 @@ article.hentry {
  * ----------------------------------------------------------------------------
  */
 
+.wp-caption,
+.attachment-post-thumbnail,
+.wp-post-image,
+.comment-content img,
 img[class*='wp-image'],
 img[class*='attachment'] {
-	.thumbnail();
+	.img-responsive();
+}
+
+img[class*='wp-image'],
+img[class*='attachment'] {
+	.img-thumbnail();
 }
 
 a > img[class*='wp-image'],
@@ -113,15 +122,6 @@ a > img[class*='attachment'] {
 		&:focus {
 		border-color: @link-color;
 	}
-}
-
-.wp-caption,
-.attachment-post-thumbnail,
-.wp-post-image,
-.comment-content img,
-img[class*='wp-image'],
-img[class*='attachment'] {
-	.img-responsive();
 }
 
 .entry-content embed,
@@ -141,7 +141,7 @@ img[class*='attachment'] {
 
 .entry-thumbnail,
 .gallery-icon {
-    .text-center();
+	.text-center();
 }
 
 .wp-caption-text,
