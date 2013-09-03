@@ -286,7 +286,7 @@ if ( !function_exists( 'binarybootstrap_the_attached_image' ) ) :
 	 */
 	function binarybootstrap_the_attached_image() {
 		$post = get_post();
-		$attachment_size = apply_filters( 'binarybootstrap_attachment_size', array(1170, 9999) );
+		$attachment_size = apply_filters( 'binarybootstrap_attachment_size', array(1140, 9999) );
 		$next_attachment_url = wp_get_attachment_url();
 
 		/**

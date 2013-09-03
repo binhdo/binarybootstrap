@@ -120,7 +120,7 @@ function binarybootstrap_setup() {
 	 * "standard" posts and pages.
 	 */
 	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 1170, 658, true );
+	set_post_thumbnail_size( 1140, 712, true );
 
 	/**
 	 * Use Bootstrap thumbnails and grid for [gallery]
