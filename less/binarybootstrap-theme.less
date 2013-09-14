@@ -1,5 +1,5 @@
 /*!
- * Binary Bootstrap v0.1.0
+ * Binary Bootstrap v1.0.0
  *
  */
 
@@ -153,6 +153,14 @@ a > img[class*='attachment'] {
  * Comments
  * ----------------------------------------------------------------------------
  */
+
+.comment-list {
+    & img.avatar {
+        .media-object();
+        .pull-left();
+        margin-right: 10px;
+    }
+}
 
 .form-submit > input[type="submit"] {
 	.btn-primary();

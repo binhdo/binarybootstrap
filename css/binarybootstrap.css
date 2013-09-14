@@ -6862,7 +6862,7 @@ td.visible-print {
 }
 
 /*!
- * Binary Bootstrap v0.1.0
+ * Binary Bootstrap v1.0.0
  *
  */
 
@@ -7209,6 +7209,12 @@ a > img[class*='attachment']:focus {
  * Comments
  * ----------------------------------------------------------------------------
  */
+
+.comment-list img.avatar {
+  display: block;
+  float: left !important;
+  margin-right: 10px;
+}
 
 .form-submit > input[type="submit"] {
   padding: 10px 16px;
