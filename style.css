@@ -12,3 +12,5 @@ Text Domain: binarybootstrap
 */
 
 /* There are no style definitions in here. Take a look at the /less or /css directories instead. */
+
+@import url('css/binarybootstrap.min.css');

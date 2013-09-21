@@ -166,7 +166,7 @@ function binarybootstrap_fonts() {
  */
 function binarybootstrap_scripts_styles() {
 	/* Stylesheets */
-	wp_enqueue_style( 'binarybootstrap', get_template_directory_uri() . '/css/binarybootstrap.min.css', false, null );
+	wp_enqueue_style( 'binarybootstrap', get_stylesheet_directory_uri() . '/style.css', false, null );
 
 	/* Load the main stylesheet */
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null, true );
