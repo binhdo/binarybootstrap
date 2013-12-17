@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/binhdo/binarybootstrap.git"
+    "url": "https://github.com/kokareff/binarybootstrap.git"
   },
-  "author": "binaryhideout",
+  "author": "kokareff",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/binhdo/binarybootstrap/issues"
+    "url": "https://github.com/kokareff/binarybootstrap/issues"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
